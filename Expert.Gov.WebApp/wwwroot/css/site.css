@@ -1,5 +1,22 @@
+
+@font-face {
+    font-family: Poppins-Bold;
+    src: url('../Fonts/Poppins-Bold.ttf');
+}
+
+@font-face {
+    font-family: Poppins-Light;
+    src: url('../Fonts/Poppins-Light.ttf');
+}
+
+@font-face {
+    font-family: Poppins-SemiBold;
+    src: url('../Fonts/Poppins-SemiBold.ttf');
+}
+
 html {
   font-size: 14px;
+  background-color: ghostwhite;
 }
 
 @media (min-width: 768px) {
@@ -15,8 +32,403 @@ html {
 html {
   position: relative;
   min-height: 100%;
+  
+}
+
+a, span, label, p, h1, h2, h3, h5, h6 {
+    font-family: Poppins-Light;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    background-color: ghostwhite;
 }
+
+.nav-teal{
+    background-color: teal !important;
+    
+}
+
+    .nav-teal a{
+        font-weight: bold;
+        color: ghostwhite !important;
+        font-family:Poppins-Light;
+    }
+
+        .nav-teal a:hover {
+            transform: scale(1.1);
+            transition: all 0.5s;
+            color: sandybrown !important;
+        }
+
+        .container-teal {
+            background-color: teal;
+            color: ghostwhite;
+        }
+
+    .container-teal a, .container-teal p, .container-teal span, .container-teal  label{
+        color: ghostwhite;
+    }
+
+.container-ghost {
+    background-color: ghostwhite;
+    color: teal;
+}
+
+    .container-ghost a, .container-ghost p, .container-ghost span, .container-ghost label {
+        color: teal;
+    }
+
+
+
+.topo-home{
+    width: 100%;
+    height: 80vh;
+       
+}
+
+.topo-home img{
+    width: 100%;
+    height : 700px;
+}
+
+
+
+.btn-teal {
+    background-color: teal;
+    color: ghostwhite;
+    border-radius: 50px;
+    min-width: 130px;
+
+}
+
+    .btn-teal:hover {
+        transform: scale(1.1);
+        transition: all 0.5s;
+        color: ghostwhite;
+    }
+
+
+.btn-voltar {
+    background-color: ghostwhite;
+    color: teal;
+    border-radius: 50px;
+    min-width: 130px;
+}
+
+    .btn-voltar:hover {
+        transform: scale(1.1);
+        transition: all 0.5s;
+        color: teal;
+    }
+
+
+
+
+.form-small {
+}
+
+    .form-small .ag-field-input {
+        font-family: Poppins-Light;
+        font-size: 1rem;
+        letter-spacing: .5px;
+        border: 0;
+        outline: 0;
+        border-bottom: 1px solid;
+        padding-bottom: .5rem;
+        width: 100%;
+        border-radius: 50px;
+        line-height: 1rem;
+        background-color: transparent;
+        color: teal;
+    }
+
+    .form-small .ag-field-label {
+        font-family: Poppins-Light !important;
+        font-size: 1rem;
+        letter-spacing: .5px;
+        position: absolute;
+        left: 0;
+        pointer-events: none;
+        transition: all .3s ease;
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        margin-left: 10px;
+        line-height: 1rem;
+        margin-top: 0.5rem;
+    }
+
+    .form-small .ag-field-input:focus ~ .ag-field-label {
+        font-family: Poppins;
+        font-size: 1rem;
+        letter-spacing: .1rem;
+        line-height: 1.2rem;
+        transform: translate3d(0,-120%,0);
+        margin-top: 0px;
+    }
+
+    .form-small .ag-field-input:valid ~ .ag-field-label {
+        font-family: Poppins;
+        font-size: 1rem;
+        letter-spacing: .1rem;
+        line-height: 1.2rem;
+        transform: translate3d(0,-120%,0);
+        margin-top: 0px;
+    }
+
+
+    .form-small .ag-field-input:read-only ~ .ag-field-label {
+        font-family: Poppins;
+        font-size: 1rem;
+        letter-spacing: .1rem;
+        line-height: 1.2rem;
+        transform: translate3d(0,-120%,0);
+        margin-top: 0px;
+    }
+
+.ag-field-label {
+    font-family: Poppins-Light !important;
+    font-size: 1.0rem;
+    letter-spacing: .5px;
+    line-height: 3rem;
+    position: absolute;
+    left: 0;
+    top: 0;
+    pointer-events: none;
+    transition: all .3s ease;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-left: 10px;
+}
+
+.ag-field-input:focus ~ .ag-field-label {
+    font-family: Poppins;
+    font-size: 1.1rem;
+    letter-spacing: .1rem;
+    line-height: calc(18px + 2 * ((100vw - 320px) / 447));
+    transform: translate3d(0,-120%,0);
+}
+
+.ag-field-input:valid ~ .ag-field-label {
+    font-family: Poppins;
+    font-size: 1.1rem;
+    letter-spacing: .1rem;
+    line-height: calc(18px + 2 * ((100vw - 320px) / 447));
+    transform: translate3d(0,-120%,0)
+}
+
+@media only screen and (min-width: 768px) {
+    .ag-field-input:focus ~ .ag-field-label {
+        line-height: 2rem
+    }
+}
+
+
+.ag-field-input {
+    font-family: Poppins-Light;
+    font-size: 1.0rem;
+    letter-spacing: .5px;
+    line-height: 2rem;
+    border: 0;
+    outline: 0;
+    border-bottom: 1px solid;
+    padding-bottom: .5rem;
+    width: 100%;
+    border-radius: 50px;
+}
+
+    .ag-field-input:disabled ~ .ag-field-label {
+        font-family: Poppins;
+        font-size: 1.0rem;
+        letter-spacing: .1rem;
+        line-height: calc(18px + 2 * ((100vw - 320px) / 447));
+        transform: translate3d(0,-120%,0);
+    }
+
+    .ag-field-input:focus {
+        background-color: teal;
+        color: ghostwhite;
+    }
+
+.ag-field {
+    position: relative
+}
+
+.ag-input-color-orange-full {
+    background-color: ghostwhite;
+    color: teal;
+}
+
+.ag-input-color-light-full {
+    background-color: ghostwhite;
+    color: teal;
+}
+
+
+.ag-field-content {
+    position: relative;
+    margin-top: 2.2rem;
+    padding-bottom: 7px;
+}
+
+.g-width-10 {
+    width: 100%;
+}
+
+.g-width-9 {
+    width: 90%;
+}
+
+.g-width-8 {
+    width: 80%;
+}
+
+.g-width-7 {
+    width: 70%;
+}
+
+.g-width-6 {
+    width: 60%;
+}
+
+.g-width-5 {
+    width: 50%;
+}
+
+.g-width-4 {
+    width: 40%;
+}
+
+.g-width-3 {
+    width: 30%;
+}
+
+.g-width-2 {
+    width: 20%;
+}
+
+.g-width-1 {
+    width: 10%;
+}
+
+.validacao-senha {
+    color: darkred;
+    font-weight: bold;
+    align-self: center;
+    margin-top: 5% !important;
+}
+
+.icon-description {
+    background-color: teal;
+    color: ghostwhite;
+    width: 25px;
+    height: 25px;
+    border-radius: 50px;
+    text-align: center;
+}
+
+.tooltip-inner {
+    background-color: teal !important;
+    color: ghostwhite !important;
+}
+
+.tooltip.bs-tooltip-right .arrow:before {
+    border-right-color: teal !important;
+}
+
+.tooltip.bs-tooltip-left .arrow:before {
+    border-left-color: teal !important;
+}
+
+.tooltip.bs-tooltip-bottom .arrow:before {
+    border-bottom-color: teal !important;
+}
+
+.tooltip.bs-tooltip-top .arrow:before {
+    border-top-color: teal !important;
+}
+
+.tooltip-bottom {
+    position: relative;
+    display: inline-block;
+}
+
+    .tooltip-bottom .tooltiptext {
+        visibility: hidden;
+        width: 120px;
+        background-color: teal;
+        color: white;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
+        position: absolute;
+        z-index: 1;
+        top: 100%;
+        left: 50%;
+        margin-left: -60px;
+    }
+
+    .tooltip-bottom:hover .tooltiptext {
+        visibility: visible;
+    }
+
+.hr-light {
+    color: teal !important;
+    opacity: 1;
+}
+
+
+
+.border-none {
+    border: 0px !important;
+}
+
+.c-loader-overlay {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    background: rgb(0 0 0 / 28%)
+}
+
+
+.scroll-teal::-webkit-scrollbar, body::-webkit-scrollbar {
+    width: 12px; /* width of the entire scrollbar */
+}
+
+.scroll-teal::-webkit-scrollbar-track, body::-webkit-scrollbar-track {
+    background-color: ghostwhite; /* color of the tracking area */
+}
+
+.scroll-teal::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb {
+    background-color: teal; /* color of the scroll thumb */
+    border-radius: 20px; /* roundness of the scroll thumb */
+    border: 3px solid ghostwhite; /* creates padding around scroll thumb */
+}
+
+
+.form-contato-sugestao{
+    border-radius: 50px;
+    padding: 30px;
+}
+
+
+
+/*TEXTO*/
+.texto-teal{
+    color: teal;
+}
+
+.texto-bold{
+    font-weight: bold;
+}
+
+/*FIM TEXTO*/
