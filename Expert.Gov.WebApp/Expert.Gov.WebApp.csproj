@@ -6,4 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Expert.Gov.Core\Expert.Gov.Core.csproj" />
+  </ItemGroup>
+
 </Project>

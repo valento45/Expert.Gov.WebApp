@@ -96,7 +96,7 @@ body {
 
 .btn-teal {
     background-color: teal;
-    color: ghostwhite;
+    color: ghostwhite !important;
     border-radius: 50px;
     min-width: 130px;
 
