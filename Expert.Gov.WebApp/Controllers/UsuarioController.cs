@@ -5,8 +5,8 @@ namespace Expert.Gov.WebApp.Controllers
     public class UsuarioController : Controller
     {
 
-
-        public async Task<IActionResult> Index()
+        [HttpGet]
+        public async Task<IActionResult> CadastroUsuario()
         {
             return View();
         }
