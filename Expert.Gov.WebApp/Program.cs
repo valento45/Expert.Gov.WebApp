@@ -1,7 +1,13 @@
+using Expert.Gov.WebApp.Configuration.InjectDependences;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddServices();
+builder.Services.AddDataBaseConfiguration(builder.Configuration);
+builder.Services.AddRepositorys();
 
 var app = builder.Build();
 
