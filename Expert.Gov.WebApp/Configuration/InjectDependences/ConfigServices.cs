@@ -10,6 +10,7 @@ namespace Expert.Gov.WebApp.Configuration.InjectDependences
         public static void AddServices(this IServiceCollection services)
         {
             services.AddTransient<ISolicitacaoService, SolicitacaoService>();
+            services.AddTransient<IPortfolioService, PortfolioService>();
         }
     }
 }

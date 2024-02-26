@@ -24,3 +24,24 @@ CREATE DATABASE bd_gov
 	);
 	
 	
+	
+	create table portfolio_tb(
+		id_portfolio serial not null primary key,
+		descricao varchar(400) not null,
+		data_hora timestamp not null,
+		resumo varchar,
+		endereco varchar(200) not null	,
+		ordem_apresentacao integer
+	);
+	
+	
+	create table anexo_portfolio_tb(
+		id_anexo serial not null primary key,
+		id_portfolio integer not null,
+		anexo_base64 varchar not null,
+		extensao_arquivo varchar(10),
+		constraint id_portfolio_fk foreign key(id_portfolio)
+		references portfolio_tb(id_portfolio)
+	);
+	
+	

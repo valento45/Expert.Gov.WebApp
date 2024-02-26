@@ -14,14 +14,15 @@ namespace Expert.Gov.Core.Models.TrabalhosRealizados
         public DateTime DataHora { get; set; }
         public string Resumo { get; set; }
         public string Local { get; set; }
+        public int OrdemApresentacao { get; set; }
 
 
-        public IEnumerable<ImagemTrabalhoRealizado> Imagens { get; set; }
+        public IEnumerable<AnexoTrabalhoRealizado> Imagens { get; set; }
 
 
         public TrabalhoRealizado()
         {
-            Imagens = new List<ImagemTrabalhoRealizado>();  
+            Imagens = new List<AnexoTrabalhoRealizado>();  
         }
 
 

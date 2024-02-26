@@ -17,7 +17,10 @@ namespace Expert.Gov.Core.Services
         {
             _solicitacaoRepository = solicitacaoRepository;
         }
-
+        public async Task<bool> IncluirAnexo(AnexoSolicitacao anexoSolicitacao)
+        {
+            return await _solicitacaoRepository.IncluirAnexo(anexoSolicitacao);
+        }
 
         public async Task<bool> Atualizar(Solicitacao solicitacao)
         {
@@ -32,11 +35,6 @@ namespace Expert.Gov.Core.Services
         public async Task<bool> Excluir(Solicitacao solicitacao)
         {
             return await _solicitacaoRepository.Excluir(solicitacao);
-        }
-
-        public async Task<bool> IncluirAnexo(AnexoSolicitacao anexoSolicitacao)
-        {
-            return await _solicitacaoRepository.IncluirAnexo(anexoSolicitacao);
         }
 
         public async Task<bool> Inserir(Solicitacao solicitacao)
