@@ -22,21 +22,20 @@ namespace Expert.Gov.Core.Repositorys
 
             NpgsqlCommand cmd = new NpgsqlCommand(query);
             cmd.Parameters.AddWithValue(@"descricao", trabalhoRealizado.Descricao);
-            cmd.Parameters.AddWithValue(@"data_hora", trabalhoRealizado.DataHora);
+            cmd.Parameters.AddWithValue(@"data_hora", trabalhoRealizado.Data_Hora);
             cmd.Parameters.AddWithValue(@"resumo", trabalhoRealizado.Resumo);
-            cmd.Parameters.AddWithValue(@"endereco", trabalhoRealizado.Local);
-            cmd.Parameters.AddWithValue(@"ordem_apresentacao", trabalhoRealizado.OrdemApresentacao);
+            cmd.Parameters.AddWithValue(@"endereco", trabalhoRealizado.Endereco);
+            cmd.Parameters.AddWithValue(@"ordem_apresentacao", trabalhoRealizado.Ordem_Apresentacao);
 
-            var result= await base.ExecuteScalarAsync(cmd);
+            var result = await base.ExecuteScalarAsync(cmd);
 
-            if(result != null)
+            if (result != null)
             {
-                trabalhoRealizado.IdTrabalho = long.Parse(result.ToString());
+                trabalhoRealizado.Id_Portfolio = long.Parse(result.ToString());
             }
 
-            return trabalhoRealizado.IdTrabalho > 0;
+            return trabalhoRealizado.Id_Portfolio > 0;
         }
-
 
         public async Task<bool> IncluirAnexoPortfolio(AnexoTrabalhoRealizado anexo)
         {
@@ -44,16 +43,14 @@ namespace Expert.Gov.Core.Repositorys
                 " values (@id_portfolio, @anexo_base64, @extensao_arquivo)";
 
             NpgsqlCommand cmd = new NpgsqlCommand(query);
-            cmd.Parameters.AddWithValue(@"id_portfolio", anexo.IdPortfolio);
-            cmd.Parameters.AddWithValue(@"anexo_base64", anexo.AnexoBase64);
-            cmd.Parameters.AddWithValue(@"extensao_arquivo", anexo.ExtensaoArquivo);
+            cmd.Parameters.AddWithValue(@"id_portfolio", anexo.Id_Portfolio);
+            cmd.Parameters.AddWithValue(@"anexo_base64", anexo.Anexo_Base64);
+            cmd.Parameters.AddWithValue(@"extensao_arquivo", anexo.Extensao_Arquivo);
 
 
             var result = await base.ExecuteCommand(cmd);
             return result;
         }
-
-
 
         public async Task<bool> AtualizarPortfolio(TrabalhoRealizado trabalhoRealizado)
         {
@@ -61,33 +58,70 @@ namespace Expert.Gov.Core.Repositorys
                 " endereco = @endereco, ordem_apresentacao = @ordem_apresentacao where id_portfolio = @id_portfolio";
 
             NpgsqlCommand cmd = new NpgsqlCommand(query);
-            cmd.Parameters.AddWithValue(@"id_portfolio", trabalhoRealizado.IdTrabalho);
+            cmd.Parameters.AddWithValue(@"id_portfolio", trabalhoRealizado.Id_Portfolio);
             cmd.Parameters.AddWithValue(@"descricao", trabalhoRealizado.Descricao);
-            cmd.Parameters.AddWithValue(@"data_hora", trabalhoRealizado.DataHora);
+            cmd.Parameters.AddWithValue(@"data_hora", trabalhoRealizado.Data_Hora);
             cmd.Parameters.AddWithValue(@"resumo", trabalhoRealizado.Resumo);
-            cmd.Parameters.AddWithValue(@"endereco", trabalhoRealizado.Local);
-            cmd.Parameters.AddWithValue(@"ordem_apresentacao", trabalhoRealizado.OrdemApresentacao);
+            cmd.Parameters.AddWithValue(@"endereco", trabalhoRealizado.Endereco);
+            cmd.Parameters.AddWithValue(@"ordem_apresentacao", trabalhoRealizado.Ordem_Apresentacao);
 
             return await base.ExecuteCommand(cmd);
         }
 
-        public Task<bool> ExcluirPortfolio(long idPortfolio)
+        public Task<bool> ExcluirPortfolio(long Id_Portfolio)
         {
             throw new NotImplementedException();
         }
-
-
 
         public IEnumerable<TrabalhoRealizado> ObterPortfoliosVitrine()
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<TrabalhoRealizado> ObterTodosPortfolios()
+        public async Task<IEnumerable<TrabalhoRealizado>> ObterTodosPortfolios(TrabalhoRealizado trabalhoRealizado)
         {
-            throw new NotImplementedException();
+            string query = "select * from  portfolio_tb ";
+
+            var result = await QueryAsync<TrabalhoRealizado>(query);
+
+            return result;
         }
 
+        public async Task<bool> ExcluirAnexo(long Id_Portfolio)
+        {
+            string query = " delete from anexo_portfolio_tb where id_portfolio = " + Id_Portfolio;
 
+            var result = await this.ExecuteAsync(query);
+
+            return result;
+        }
+        public async Task<bool> ExcluirTrabalho(long Id_Portfolio)
+        {
+            string query = " delete from portfolio_tb where id_portfolio = " + Id_Portfolio;
+
+            var result = await this.ExecuteAsync(query);
+
+            return result;
+        }
+        public async Task<TrabalhoRealizado> ObterPorId(long Id_Portfolio)
+
+        {
+            string query = $"select * from portfolio_tb where id_portfolio = {Id_Portfolio}";
+
+            var result = await base.QueryAsync<TrabalhoRealizado>(query);
+
+            return result.FirstOrDefault();
+
+
+        }
+
+        public async Task<IEnumerable<AnexoTrabalhoRealizado>> ObterTodosAnexosByPortfolio(long Id_Portfolio)
+        {
+            string query = "select * from anexo_portfolio_tb where id_portfolio = " + Id_Portfolio;
+
+            var result = await base.QueryAsync<AnexoTrabalhoRealizado>(query);
+            return result;
+
+        }
     }
 }

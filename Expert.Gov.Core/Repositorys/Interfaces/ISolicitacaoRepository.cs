@@ -10,13 +10,13 @@ namespace Expert.Gov.Core.Repositorys.Interfaces
     public interface ISolicitacaoRepository
     {
 
-        Task<bool> Inserir(Solicitacao solicitacao);
-        Task<bool> Atualizar(Solicitacao solicitacao);
-        Task<bool> Excluir(Solicitacao solicitacao);
+        Task<bool> InserirSolicitacao(Solicitacao solicitacao);
+        Task<bool> AtualizarSolicitacao(Solicitacao solicitacao);
+        Task<bool> ExcluirAnexo(long Id_solicitacao);
 
-        Task<bool> IncluirAnexo(AnexoSolicitacao anexoSolicitacao);
-
-
+        Task<bool> ExcluirSolicitacao(long Id_solicitacao);
+        Task<bool> IncluirAnexoSolicitacao(AnexoSolicitacao anexo);  
+        Task<IEnumerable<Solicitacao>> ObterTodasSolicitacaoes(Solicitacao solicitacao);
         Task<IEnumerable<Solicitacao>> ConsultarSolicitacoes();
     }
 }

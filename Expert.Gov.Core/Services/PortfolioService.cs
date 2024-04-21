@@ -31,26 +31,42 @@ namespace Expert.Gov.Core.Services
 
 
 
-        public Task<bool> AtualizarPortfolio(TrabalhoRealizado trabalhoRealizado)
+        public async Task<bool> AtualizarPortfolio(TrabalhoRealizado trabalhoRealizado)
         {
-            throw new NotImplementedException();
+            return await _portfolioRepository.AtualizarPortfolio(trabalhoRealizado);
         }
 
         public Task<bool> ExcluirPortfolio(long idPortfolio)
         {
             throw new NotImplementedException();
-        }    
-
-       
+        }
 
         public IEnumerable<TrabalhoRealizado> ObterPortfoliosVitrine()
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<TrabalhoRealizado> ObterTodosPortfolios()
+        public async Task<IEnumerable<TrabalhoRealizado>> ObterTodosPortfolios(TrabalhoRealizado trabalhoRealizado)
         {
-            throw new NotImplementedException();
+            return await _portfolioRepository.ObterTodosPortfolios(trabalhoRealizado);
+        }
+        public async Task<bool> ExcluirAnexo(long Id_Portfolio)
+        {
+            return await _portfolioRepository.ExcluirAnexo(Id_Portfolio);
+        }
+
+        public async Task<bool> ExcluirTrabalho(long Id_Portfolio)
+        {
+            return await _portfolioRepository.ExcluirTrabalho(Id_Portfolio);
+        }
+        public async Task<TrabalhoRealizado> ObterPorId(long Id_Portfolio)
+        {
+            return await _portfolioRepository.ObterPorId(Id_Portfolio);
+        }
+
+        public async Task<IEnumerable<AnexoTrabalhoRealizado>> ObterTodosAnexosByPortfolio(long Id_Portfolio)
+        {
+            return await _portfolioRepository.ObterTodosAnexosByPortfolio(Id_Portfolio);
         }
     }
 }

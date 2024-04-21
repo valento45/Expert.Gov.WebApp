@@ -9,15 +9,16 @@ namespace Expert.Gov.Core.Models.TrabalhosRealizados
 {
     public class TrabalhoRealizado
     {
-        public long IdTrabalho { get; set; }
+    
+        public long Id_Portfolio{ get; set; }
         public string  Descricao { get; set; }
-        public DateTime DataHora { get; set; }
+        public DateTime Data_Hora { get; set; }
         public string Resumo { get; set; }
-        public string Local { get; set; }
-        public int OrdemApresentacao { get; set; }
+        public string Endereco { get; set; }
+        public int Ordem_Apresentacao { get; set; }
 
 
-        public IEnumerable<AnexoTrabalhoRealizado> Imagens { get; set; }
+        public ICollection<AnexoTrabalhoRealizado> Imagens { get; set; }
 
 
         public TrabalhoRealizado()
@@ -29,6 +30,15 @@ namespace Expert.Gov.Core.Models.TrabalhosRealizados
         public TrabalhoRealizado(DataRow dr)
         {
             
+        }
+
+
+        public void InformarAnexo(AnexoTrabalhoRealizado anexoTrabalhoRealizado)
+        {
+            if (Imagens == null)
+                Imagens = new List<AnexoTrabalhoRealizado>();
+
+            Imagens.Add(anexoTrabalhoRealizado);
         }
     }
 }

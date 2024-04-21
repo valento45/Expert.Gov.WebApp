@@ -9,13 +9,13 @@ namespace Expert.Gov.Core.Services.Interfaces
 {
     public interface ISolicitacaoService
     {
-        Task<bool> Inserir(Solicitacao solicitacao);
-        Task<bool> Atualizar(Solicitacao solicitacao);
-        Task<bool> Excluir(Solicitacao solicitacao);
+        Task<bool> InserirSolicitacao(Solicitacao solicitacao);
+        Task<bool> AtualizarSolicitacao(Solicitacao solicitacao);
+        Task<bool> IncluirAnexoSolicitacao(AnexoSolicitacao anexo);
+        Task<IEnumerable<Solicitacao>> ObterTodasSolicitacaoes(Solicitacao solicitacao);
+        Task<bool> ExcluirSolicitacao(long Id_Solicitacao);
 
-        Task<bool> IncluirAnexo(AnexoSolicitacao anexoSolicitacao);
-
-
+        Task<bool> ExcluirAnexo(long Id_Solicitacao);
         Task<IEnumerable<Solicitacao>> ConsultarSolicitacoes();
     }
 }

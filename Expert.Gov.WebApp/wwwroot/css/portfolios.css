@@ -1,0 +1,17 @@
+﻿
+
+
+
+.card-portfolio {
+    width: 350px;
+    height: 350px;
+    border-radius: 50px;
+    padding: 2rem;
+}
+
+    .card-portfolio:hover {
+        background-color: #00808055 !important;
+        cursor: pointer;
+        transition: 0.2s;
+        transform: scale(1.05);
+    }

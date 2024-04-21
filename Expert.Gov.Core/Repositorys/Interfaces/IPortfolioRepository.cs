@@ -10,7 +10,7 @@ namespace Expert.Gov.Core.Repositorys.Interfaces
     public interface IPortfolioRepository
     {
 
-        IEnumerable<TrabalhoRealizado> ObterTodosPortfolios();
+        //IEnumerable<TrabalhoRealizado> ObterTodosPortfolios(TrabalhoRealizado trabalhoRealizado);
         IEnumerable<TrabalhoRealizado> ObterPortfoliosVitrine();
 
 
@@ -18,8 +18,15 @@ namespace Expert.Gov.Core.Repositorys.Interfaces
         Task<bool> IncluirPortfolio(TrabalhoRealizado trabalhoRealizado);
         Task<bool> IncluirAnexoPortfolio(AnexoTrabalhoRealizado anexo);
         Task<bool> AtualizarPortfolio(TrabalhoRealizado trabalhoRealizado);
-        Task<bool> ExcluirPortfolio(long idPortfolio);
+        Task<bool> ExcluirPortfolio(long Id_Portfolio);
+        Task<IEnumerable<TrabalhoRealizado>> ObterTodosPortfolios(TrabalhoRealizado trabalhoRealizado);
+        Task<bool> ExcluirAnexo(long Id_Portfolio);
+        Task<bool> ExcluirTrabalho(long Id_Portfolio);
+
+        Task<TrabalhoRealizado> ObterPorId(long Id_Portfolio);
 
 
+        Task<IEnumerable<AnexoTrabalhoRealizado>> ObterTodosAnexosByPortfolio(long Id_Portfolio);
     }
 }
+

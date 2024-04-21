@@ -9,9 +9,11 @@
     <form class="form-contato-sugestao mt-3 col-lg-6" asp-action="SalvarTrabalho" asp-controller="TrabalhoRealizado" method="post" enctype="multipart/form-data">
 
         <input id="txtCodigo" type="hidden" asp-for="IdTrabalho"/>
+        <input  type="hidden" asp-for="Id_Portfolio"/>
         
 
         <h5 class="texto-teal">Descreva sua solicitação</h5>
+
 
         <div class="form-outline mb-4 ag-field-content">
             <input asp-for="Descricao" type="text" id="txtDescricao" class="form-control ag-field-input ag-input-color-orange-full" autocomplete="off" required />

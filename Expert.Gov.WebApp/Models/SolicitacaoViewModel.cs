@@ -1,14 +1,10 @@
-﻿using Expert.Gov.Core.Models.TrabalhosRealizados;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Expert.Gov.Core.Models.SolicitacaoSugestao;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Runtime.ConstrainedExecution;
 
-namespace Expert.Gov.Core.Models.SolicitacaoSugestao
+namespace Expert.Gov.WebApp.Models
 {
-    public class Solicitacao
+    public class SolicitacaoViewModel
     {
         public long Id_Solicitacao { get; set; }
         public string Nome { get; set; }
@@ -20,17 +16,16 @@ namespace Expert.Gov.Core.Models.SolicitacaoSugestao
         public string Descricao_Titulo { get; set; }
         public string Descricao_Sugestao_Melhoria { get; set; }
 
-        public ICollection<AnexoSolicitacao> Imagens { get; set; }
+        public List<IFormFile> Anexos { get; set; }
 
-        public Solicitacao()
+        public SolicitacaoViewModel()
         {
-            Imagens = new List<AnexoSolicitacao>();
+            Anexos = new List<IFormFile>();
         }
 
         public string ObterEnderecoFormatado()
         {
             return $"{Endereco_solicitacao}, {Numero_solicitacao} - {Cep_solicitacao}";
         }
-
     }
 }

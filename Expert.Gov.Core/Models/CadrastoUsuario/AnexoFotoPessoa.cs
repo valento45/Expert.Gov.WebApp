@@ -5,30 +5,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Expert.Gov.Core.Models.SolicitacaoSugestao
+namespace Expert.Gov.Core.Models.CadrastoUsuario
 {
-    public class AnexoSolicitacao
+    public class AnexoFotoPessoa
     {
         public int IdAnexo { get; set; }
-        public long IdSolicitacao { get; set; }
+        public long IdCadastroUsuario { get; set; }
         public string AnexoBase64 { get; private set; }
         public string ExtensaoArquivo { get; private set; }
 
 
 
-        public AnexoSolicitacao()
+        public AnexoFotoPessoa()
         {
 
         }
 
-        public AnexoSolicitacao(DataRow dr)
+        public AnexoFotoPessoa(DataRow dr)
         {
 
         }
 
-        public AnexoSolicitacao(long idSolicitacao)
+        public AnexoFotoPessoa(long idCadastroUsuario)
         {
-            IdSolicitacao = idSolicitacao;
+            IdCadastroUsuario = idCadastroUsuario;
         }
 
 
@@ -41,6 +41,6 @@ namespace Expert.Gov.Core.Models.SolicitacaoSugestao
         {
             ExtensaoArquivo = extensao;
         }
+
     }
 }
-

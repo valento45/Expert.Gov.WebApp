@@ -9,12 +9,12 @@ namespace Expert.Gov.Core.Models.TrabalhosRealizados
 {
     public class AnexoTrabalhoRealizado
     {
-        public int IdAnexo { get; set; }
-        public long IdPortfolio { get; set; }
-        public string AnexoBase64 { get; private set; }
-        public string ExtensaoArquivo { get; private set; }
-  
+        public int Id_Anexo { get; set; }
+        public long Id_Portfolio { get; set; }
+        public string Anexo_Base64 { get; private set; }
+        public string Extensao_Arquivo { get; private set; }
 
+ 
         public AnexoTrabalhoRealizado()
         {
             
@@ -27,18 +27,18 @@ namespace Expert.Gov.Core.Models.TrabalhosRealizados
 
         public AnexoTrabalhoRealizado(long idPortfolio)
         {
-            IdPortfolio = idPortfolio;
+            Id_Portfolio = idPortfolio;
         }
 
 
         public void InformarAnexoBase64(string anexo)
         {
-            AnexoBase64 = anexo;
+            Anexo_Base64 = anexo;
         }
 
         public void InformarExtensao(string extensao)
         {
-            ExtensaoArquivo = extensao; 
+            Extensao_Arquivo = extensao; 
         }
     }
 }
