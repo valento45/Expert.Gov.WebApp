@@ -3,6 +3,8 @@
     public class PortfolioViewModel
     {
         public int IdTrabalho { get; set; }
+
+        public long Id_Portfolio { get; set; }
         public string Descricao { get; set; }
         public DateTime DataHora { get; set; }
         public string Resumo { get; set; }

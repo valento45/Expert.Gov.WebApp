@@ -1,4 +1,6 @@
-﻿
+﻿@using Expert.Gov.Core.Models.TrabalhosRealizados
+@model TrabalhosRealizadosLista
+
 
 
 <div class="container container-ghost mt-5">
@@ -13,5 +15,66 @@
 
 
 
+    <!--Trabalhos realizados ( ADMINISTRADOR )-->
+    <form class="d-none">
 
+        <table class="table">
+            <thead class="table-dark">
+                <tr>
+                    <td>Id_Portfolio</td>
+                    <td>Descricao</td>
+                    <td>Resumo</td>
+                    <td>Data</td>
+                    <td>Endereco</td>
+                    <td>Acoes </td>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var trabalhoRealizado in Model.ListaTrabalhosRealizados)
+                {
+                    <tr>
+                        <td> @trabalhoRealizado.Id_Portfolio</td>
+                        <td>  @trabalhoRealizado.Descricao</td>
+                        <td> @trabalhoRealizado.Resumo</td>
+                        <td> @trabalhoRealizado.Data_Hora</td>
+                        <td> @trabalhoRealizado.Endereco</td>
+                        <td>
+                            <button class="btn btn-secondary" asp-controller="TrabalhoRealizado" asp-action="EditarTrabalho" asp-route-id="@trabalhoRealizado.Id_Portfolio">Editar</button>
+                            <button class="btn btn-danger" asp-controller="TrabalhoRealizado" asp-action="ExcluirTrabalho" asp-route-id="@trabalhoRealizado.Id_Portfolio">Excluir</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </form>
+
+
+    <!--Trabalhos realizados Normal-->
+    <form>
+
+        <div class="col-lg-12 d-sm-inline-flex">
+
+            @foreach (var trabRealizado in Model.ListaTrabalhosRealizados)
+            {
+                <div class="card-portfolio">
+                    @if (trabRealizado.Imagens.Any())
+                    {
+                        var imagem = @trabRealizado.Imagens?.FirstOrDefault();
+                        <img src="data:image/png;base64,@imagem.Anexo_Base64" style="width: 80%; height: 65%;" />
+                    }
+                    else
+                    {
+                        <img src="~/imgs/fundo 1.jpg" style="width: 80%; height: 65%;" />
+                    }
+
+                    <p style="overflow-wrap: break-word;">@trabRealizado.Descricao</p>
+                    <p style="overflow-wrap: break-word;">@trabRealizado.Data_Hora.ToString("dd/MM/yyyy")</p>
+                    <p style="overflow-wrap: break-word;">@trabRealizado.Endereco</p>
+                </div>
+            }
+
+        </div>
+    </form>
 </div>

@@ -1,7 +1,10 @@
-﻿using Expert.Gov.Core.Request.TrabalhosRequest;
+﻿using Expert.Gov.Core.Models.TrabalhosRealizados;
+using Expert.Gov.Core.Request.TrabalhosRequest;
 using Expert.Gov.WebApp.Applications.Interfaces;
 using Expert.Gov.WebApp.Models;
 using Microsoft.AspNetCore.Mvc;
+using Npgsql.Replication.PgOutput.Messages;
+using System.Diagnostics;
 
 namespace Expert.Gov.WebApp.Controllers
 {
@@ -17,7 +20,14 @@ namespace Expert.Gov.WebApp.Controllers
         [HttpGet]
         public async Task<IActionResult> TrabalhosRealizados()
         {
-            return View();
+
+
+            var trabalhoRealizadoLista_ = new TrabalhosRealizadosLista();
+
+            trabalhoRealizadoLista_.ListaTrabalhosRealizados = await _portfolioApplication.ObterTodosPortfolios(new TrabalhoRealizado());
+
+        
+            return View(trabalhoRealizadoLista_);
         }
 
 
@@ -32,7 +42,58 @@ namespace Expert.Gov.WebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> SalvarTrabalho(PortfolioViewModel portfolioViewModel)
         {
-            var result = await _portfolioApplication.IncluirPortfolio(portfolioViewModel);
+
+
+            if (portfolioViewModel.Id_Portfolio > 0)
+            {
+                TrabalhoRealizado trabalhoRealizado = new TrabalhoRealizado();
+
+                trabalhoRealizado.Id_Portfolio = portfolioViewModel.Id_Portfolio;
+                trabalhoRealizado.Descricao = portfolioViewModel.Descricao;
+                trabalhoRealizado.Data_Hora = portfolioViewModel.DataHora;
+                trabalhoRealizado.Resumo = portfolioViewModel.Resumo;
+                trabalhoRealizado.Endereco = portfolioViewModel.Local;
+
+                await _portfolioApplication.AtualizarPortfolio(trabalhoRealizado);
+            }
+            else
+            {
+                await _portfolioApplication.IncluirPortfolio(portfolioViewModel);
+            }
+            return Ok(true);
+
+        }
+  
+         public async Task<IActionResult> ExcluirAnexo(long Id_Portfolio)
+         {
+            var result = await _portfolioApplication.ExcluirAnexo(Id_Portfolio);
+
+            return RedirectToAction(nameof(TrabalhosRealizados));
+         }
+
+        [HttpGet]
+        public async Task<IActionResult> ExcluirTrabalho(long id)
+        {
+
+            var result = await _portfolioApplication.ExcluirTrabalho(id);
+
+            return RedirectToAction(nameof(TrabalhosRealizados));
+
+        }
+
+    
+        public async Task<IActionResult> EditarTrabalho(long id)
+        {
+            var result = await _portfolioApplication.ObterPorId(id);
+
+            var portfolioViewModel = new PortfolioViewModel();
+
+            portfolioViewModel.Id_Portfolio = result.Id_Portfolio;
+            portfolioViewModel.Descricao = result.Descricao;
+            portfolioViewModel.DataHora = result.Data_Hora;
+            portfolioViewModel.Resumo = result.Resumo;
+            portfolioViewModel.Local = result.Endereco;
+
 
             if (result)
             {
@@ -43,5 +104,6 @@ namespace Expert.Gov.WebApp.Controllers
                 throw new Exception("Não foi possível incluir o portfólio. Por favor, tente mais tarde.");            
            
         }
+  
     }
 }

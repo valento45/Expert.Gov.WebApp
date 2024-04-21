@@ -1,86 +1,58 @@
-﻿@using Expert.Gov.Core.Models.SolicitacaoSugestao;
-@model Solicitacao
+﻿@using Expert.Gov.Core.Models.SolicitacaoSugestao
+@model SolicitacoesLista
 
-<div class="container mt-5 container-ghost">
 
-    <h4>Solicitação de melhoria</h4>
+
+<div class="container container-ghost mt-5">
+
+    <div class="col-lg-12 d-inline-flex">
+        <h4 class="col-lg-10">Solicitar Melhoria</h4>
+
+
+        <a type="button" class="btn btn-teal col-lg-2 ms-2" asp-controller="Contato" asp-action="InserirSolicitacao">Enviar Solicitacao</a>
+    </div>
+
     <hr />
 
+    <form>
 
-    <form class="form-contato-sugestao mt-3 col-lg-6" asp-controller="Contato" asp-action="IncluirSolicitacao" method="post">
+        <table class="table">
+            <thead class="table-dark">
+                <tr>
+                    <td>Id_Solicitacao</td>
+                    <td>Nome</td>
+                    <td>Celular</td>
+                    <td>Email</td>
+                    <td>Endereco_solicitacao</td>
+                    <td>Numero_solicitacao </td>
+                    <td>Cep_solicitacao</td>
+                    <td>Descricao_prolema</td>
+                    <td>Descricao_Sugestao_Melhoria</td>
+                </tr>
+            </thead>
 
-        <input asp-for="IdSolicitacao" class="d-none" />
-
-        <div class="form-outline mb-4 ag-field-content">
-            <input asp-for="Nome" type="text" id="txtEmail" class="form-control ag-field-input ag-input-color-orange-full" autocomplete="off" required />
-            <label class="form-label text-semi-bold-light ag-field-label" for="form2Example2">Nome</label>
-        </div>
-
-        <div class="col-lg-12">
-            <div class="form-outline mb-4 ag-field-content col-lg-6">
-                <input asp-for="Celular" type="text" id="txtEmail" class="form-control ag-field-input ag-input-color-orange-full" autocomplete="off" required />
-                <label class="form-label text-semi-bold-light ag-field-label" for="form2Example2">Celular</label>
-            </div>
-        </div>
-
-        <div class="form-outline mb-4 ag-field-content">
-            <input asp-for="Email" type="text" id="txtEmail" class="form-control ag-field-input ag-input-color-orange-full" autocomplete="off" required />
-            <label class="form-label text-semi-bold-light ag-field-label" for="form2Example2">E-mail</label>
-        </div>
-
-
-        <div class="form-outline mb-4 ag-field-content">
-            <input asp-for="DescricaoProblema" type="text" id="txtEmail" class="form-control ag-field-input ag-input-color-orange-full" autocomplete="off" required />
-            <label class="form-label text-semi-bold-light ag-field-label" for="form2Example2">Descreva Seu Problema</label>
-        </div>
-
-        <div class="mb-4">
-            <a>( 0 ) Anexos adicionados</a>
-            <button type="submit" class="btn btn-teal ms-3">Carregar anexos</button>
-        </div>
-
-
-
-        <div class="col-lg-12">
-            <div class="form-outline mb-4 ag-field-content col-lg-6">
-                <input asp-for="CEP" type="text" id="txtEmail" class="form-control ag-field-input ag-input-color-orange-full" autocomplete="off" required />
-                <label class="form-label text-semi-bold-light ag-field-label" for="form2Example2">CEP</label>
-            </div>
-        </div>
-
-
-        <div class="col-lg-12 d-inline-flex">
-            <div class="form-outline mb-4 ag-field-content col-lg-10 col-sm-10">
-                <input asp-for="Endereco" type="text" id="txtEmail" class="form-control ag-field-input ag-input-color-orange-full" autocomplete="off" required />
-                <label class="form-label text-semi-bold-light ag-field-label" for="form2Example2">Endereço</label>
-            </div>
-
-            <div class="col-lg-2 col-sm-2  ag-field-content ms-2">
-                <input asp-for="Numero" type="number" id="txtEmail" class="form-control ag-field-input ag-input-color-orange-full" autocomplete="off" required />
-                <label class="form-label text-semi-bold-light ag-field-label" for="form2Example2">Nº</label>
-            </div>
-        </div>
-
-
-
-
-        <div class="form-outline mb-4 ag-field-content col-lg-12 col-sm-12">
-            <textarea asp-for="DescricaoSugestaoMelhoria" class="form-control ag-field-input ag-input-color-orange-full" autocomplete="off" required style="height: 200px;">
-
-            </textarea>
-            <label class="form-label text-semi-bold-light ag-field-label" for="form2Example2">Decreve sua sugestão (Opcional)</label>
-        </div>
-
-        <div class="mt-5">
-            <button type="submit" class="btn btn-teal ms-5">Enviar</button>
-            <button type="button" class="btn btn-voltar ms-5">Voltar</button>
-
-        </div>
+            <tbody>
+                @foreach (var solicitacao in Model.ListaSolicitacoes)
+                {
+                    <tr>
+                        <td> @solicitacao.Id_Solicitacao</td>
+                        <td> @solicitacao.Nome</td>
+                        <td> @solicitacao.Celular</td>
+                        <td> @solicitacao.Email</td>
+                        <td> @solicitacao.Endereco_solicitacao</td>
+                        <td> @solicitacao.Numero_solicitacao</td>
+                        <td> @solicitacao.Cep_solicitacao</td>
+                        <td> @solicitacao.Descricao_Titulo</td>
+                        <td> @solicitacao.Descricao_Sugestao_Melhoria</td>
+                        <td>
+                            @*  <a asp-action="Edit" asp-route-Id="@trabalhoRealizado.Id_Portfolio" >Edita</a> *@
+                            <button class="btn btn-danger" asp-controller="Contato" asp-action="ExcluirSolicitacao" asp-route-id="@solicitacao.Id_Solicitacao">Excluir</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
 
     </form>
 
-
-
-
 </div>
-

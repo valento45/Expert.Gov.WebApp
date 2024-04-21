@@ -1,4 +1,6 @@
-﻿using Expert.Gov.Core.Models.TrabalhosRealizados;
+﻿//using AspNetCore;
+using Expert.Gov.Core.Models.TrabalhosRealizados;
+using Expert.Gov.Core.Services;
 using Expert.Gov.Core.Services.Interfaces;
 using Expert.Gov.WebApp.Models;
 
@@ -12,10 +14,6 @@ namespace Expert.Gov.WebApp.Applications.Interfaces
         {
             _portfolioService = portfolioService;
         }
-
-
-
-
 
         public async Task IncluirAnexosPortfolio(List<IFormFile> anexos, long idPortfolio)
         {
@@ -48,20 +46,57 @@ namespace Expert.Gov.WebApp.Applications.Interfaces
 
             var obj = new TrabalhoRealizado()
             {
-                IdTrabalho = portfolioViewModel.IdTrabalho,
+                Id_Portfolio = portfolioViewModel.IdTrabalho,
                 Descricao = portfolioViewModel.Descricao,
                 Resumo = portfolioViewModel.Resumo,
-                DataHora = portfolioViewModel.DataHora,
-                Local = portfolioViewModel.Local                
+                Data_Hora = portfolioViewModel.DataHora,
+                Endereco = portfolioViewModel.Local
             };
 
 
-            if(await _portfolioService.IncluirPortfolio(obj))
+            if (await _portfolioService.IncluirPortfolio(obj))
             {
-                await this.IncluirAnexosPortfolio(portfolioViewModel.Anexos, obj.IdTrabalho);
+                await this.IncluirAnexosPortfolio(portfolioViewModel.Anexos, obj.Id_Portfolio);
                 return true;
             }
             return false;
+        }
+
+        public async Task<IEnumerable<TrabalhoRealizado>> ObterTodosPortfolios(TrabalhoRealizado trabalhoRealizado)
+        {
+            var listaTrabalhos = await _portfolioService.ObterTodosPortfolios(trabalhoRealizado);
+
+            foreach(var trabRealizado in listaTrabalhos)
+            {
+                var anexos = await _portfolioService.ObterTodosAnexosByPortfolio(trabRealizado.Id_Portfolio);
+
+                trabRealizado.Imagens = anexos.ToList();
+            }
+
+            return listaTrabalhos;
+        }
+        public async Task<bool> ExcluirAnexo(long Id_Portfolio)
+        {
+            return await _portfolioService.ExcluirAnexo(Id_Portfolio);
+        }
+        public async Task<bool> ExcluirTrabalho(long Id_Portfolio)
+        {
+            await ExcluirAnexo(Id_Portfolio);
+            return await _portfolioService.ExcluirTrabalho(Id_Portfolio);
+        }
+        public async Task<TrabalhoRealizado> ObterPorId(long Id_Portfolio)
+        {
+
+            return await _portfolioService.ObterPorId(Id_Portfolio);
+        }
+        public async Task<bool> AtualizarPortfolio(TrabalhoRealizado trabalhoRealizado)
+        {
+            return await _portfolioService.AtualizarPortfolio(trabalhoRealizado);
+        }
+
+        public async Task<IEnumerable<AnexoTrabalhoRealizado>> ObterTodosAnexosByPortfolio(long Id_Portfolio)
+        {
+            return await _portfolioService.ObterTodosAnexosByPortfolio(Id_Portfolio);
         }
     }
 }

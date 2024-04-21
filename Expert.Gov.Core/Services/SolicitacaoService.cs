@@ -1,4 +1,5 @@
 ﻿using Expert.Gov.Core.Models.SolicitacaoSugestao;
+using Expert.Gov.Core.Repositorys;
 using Expert.Gov.Core.Repositorys.Interfaces;
 using Expert.Gov.Core.Services.Interfaces;
 using System;
@@ -17,29 +18,40 @@ namespace Expert.Gov.Core.Services
         {
             _solicitacaoRepository = solicitacaoRepository;
         }
-        public async Task<bool> IncluirAnexo(AnexoSolicitacao anexoSolicitacao)
+
+        public async Task<bool> InserirSolicitacao(Solicitacao solicitacao)
         {
-            return await _solicitacaoRepository.IncluirAnexo(anexoSolicitacao);
+            return await _solicitacaoRepository.InserirSolicitacao(solicitacao);
+        }
+        public async Task<bool> IncluirAnexoSolicitacao(AnexoSolicitacao anexo)
+        {
+            return await _solicitacaoRepository.IncluirAnexoSolicitacao(anexo);
         }
 
-        public async Task<bool> Atualizar(Solicitacao solicitacao)
+        public async Task<bool> AtualizarSolicitacao(Solicitacao solicitacao)
         {
-            return await _solicitacaoRepository.Atualizar(solicitacao);
+            return await _solicitacaoRepository.AtualizarSolicitacao(solicitacao);
         }
 
+        public async Task<IEnumerable<Solicitacao>> ObterTodasSolicitacaoes(Solicitacao solicitacao)
+        {
+            return await _solicitacaoRepository.ObterTodasSolicitacaoes(solicitacao);
+        }
+
+        public async Task<bool> ExcluirAnexo(long Id_Solicitacao)
+        {
+            return await _solicitacaoRepository.ExcluirAnexo(Id_Solicitacao);
+        }
+
+        public async Task<bool> ExcluirSolicitacao(long Id_Solicitacao)
+        {
+            return await _solicitacaoRepository.ExcluirSolicitacao(Id_Solicitacao);
+        }
+       
         public async Task<IEnumerable<Solicitacao>> ConsultarSolicitacoes()
         {
             return await _solicitacaoRepository.ConsultarSolicitacoes();
         }
-
-        public async Task<bool> Excluir(Solicitacao solicitacao)
-        {
-            return await _solicitacaoRepository.Excluir(solicitacao);
-        }
-
-        public async Task<bool> Inserir(Solicitacao solicitacao)
-        {
-            return await _solicitacaoRepository.Inserir(solicitacao);
-        }
+       
     }
 }
