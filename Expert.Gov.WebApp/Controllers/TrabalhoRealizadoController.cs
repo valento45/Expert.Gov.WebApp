@@ -34,7 +34,14 @@ namespace Expert.Gov.WebApp.Controllers
         {
             var result = await _portfolioApplication.IncluirPortfolio(portfolioViewModel);
 
-            return Ok(result);
+            if (result)
+            {
+                var message = new MessageViewModel("Trabalho/Portfólio incluído com sucesso!");
+                return View("SucessoMessage", message);
+            }
+            else
+                throw new Exception("Não foi possível incluir o portfólio. Por favor, tente mais tarde.");            
+           
         }
     }
 }

@@ -44,4 +44,4 @@ CREATE DATABASE bd_gov
 		references portfolio_tb(id_portfolio)
 	);
 	
-	
+	select id_anexo, id_portfolio, extensao_arquivo from anexo_portfolio_tb
