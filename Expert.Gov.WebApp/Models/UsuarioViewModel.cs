@@ -6,7 +6,8 @@ namespace Expert.Gov.WebApp.Models
     {
         public long Id_CadastroUsuario { get; set; }
         public string Nome { get; set; }
-        public string normalizedNome { get; set; }
+        public string Usuario { get; set; }
+        public string normalizedNome { get { return Nome.ToUpper(); } }
 
         [DataType(DataType.Password)]
         public string Password { get; set; }

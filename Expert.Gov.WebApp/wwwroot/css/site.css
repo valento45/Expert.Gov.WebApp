@@ -15,24 +15,23 @@
 }
 
 html {
-  font-size: 14px;
-  background-color: ghostwhite;
+    font-size: 14px;
+    background-color: ghostwhite;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
 html {
-  position: relative;
-  min-height: 100%;
-  
+    position: relative;
+    min-height: 100%;
 }
 
 a, span, label, p, h1, h2, h3, h5, h6 {
@@ -44,74 +43,83 @@ body {
     background-color: ghostwhite;
 }
 
-.nav-teal{
-    background-color: teal !important;
-    
+.nav-teal {
+    background-color: #FEB319 !important;
 }
 
-    .nav-teal a{
+    .nav-teal a {
         font-weight: bold;
-        color: ghostwhite !important;
-        font-family:Poppins-Light;
+        color: white !important;
+        font-family: Poppins-Light;
     }
 
         .nav-teal a:hover {
             transform: scale(1.05);
             transition: all 0.5s;
-            color: darkseagreen !important;
+            color: darkgoldenrod !important;
         }
 
-        .container-teal {
-            background-color: teal;
-            color: ghostwhite;
-        }
+.img-icon-nav {
 
-    .container-teal a, .container-teal p, .container-teal span, .container-teal  label{
+    width: 35px;
+    height: 35px;
+}
+
+.container-teal {
+    background-color: #FEB319;
+    color: black;
+}
+
+    .container-teal a, .container-teal p, .container-teal span, .container-teal label {
         color: ghostwhite;
     }
 
 .container-ghost {
     background-color: ghostwhite;
-    color: teal;
+    color: black;
 }
 
     .container-ghost a, .container-ghost p, .container-ghost span, .container-ghost label {
-        color: teal;
+        color: black;
+    }
+
+    .container-ghost h1, .container-ghost h2, .container-ghost h3, .container-ghost h4 {
+        color: #FEB319;
+    }
+
+    .container-ghost small{
+        color: gray;
+    }
+
+    .topo-home {
+        width: 100%;
+        height: 80vh;
+    }
+
+    .topo-home img {
+        width: 100%;
+        height: 105%;
     }
 
 
 
-.topo-home{
-    width: 100%;
-    height: 80vh;
-       
-}
-
-.topo-home img{
-    width: 100%;
-    height : 700px;
-}
-
-
-
 .btn-teal {
-    background-color: teal;
-    color: ghostwhite !important;
+    background-color: #FEB319;
+    color: white !important;
     border-radius: 50px;
     min-width: 130px;
-
 }
 
     .btn-teal:hover {
         transform: scale(1.1);
         transition: all 0.5s;
-        color: ghostwhite;
+        color: #FEB31955;
     }
 
 
 .btn-voltar {
     background-color: ghostwhite;
-    color: teal;
+    color: #FEB319;
     border-radius: 50px;
     min-width: 130px;
 }
@@ -119,10 +127,13 @@ body {
     .btn-voltar:hover {
         transform: scale(1.1);
         transition: all 0.5s;
-        color: teal;
+        color: #FEB31955;
     }
 
-
+.link-redirect-orange:hover {
+    color: #FEB319 !important;
+    font-weight: bold;
+}
 
 
 .form-small {
@@ -140,7 +151,7 @@ body {
         border-radius: 50px;
         line-height: 1rem;
         background-color: transparent;
-        color: teal;
+        color: #FEB319;
     }
 
     .form-small .ag-field-label {
@@ -250,7 +261,7 @@ body {
     }
 
     .ag-field-input:focus {
-        background-color: teal;
+        background-color: #FEB319;
         color: ghostwhite;
     }
 
@@ -260,12 +271,12 @@ body {
 
 .ag-input-color-orange-full {
     background-color: ghostwhite;
-    color: teal;
+    color: #FEB319;
 }
 
 .ag-input-color-light-full {
     background-color: ghostwhite;
-    color: teal;
+    color: #FEB319;
 }
 
 
@@ -323,7 +334,7 @@ body {
 }
 
 .icon-description {
-    background-color: teal;
+    background-color: #FEB319;
     color: ghostwhite;
     width: 25px;
     height: 25px;
@@ -332,24 +343,24 @@ body {
 }
 
 .tooltip-inner {
-    background-color: teal !important;
+    background-color: #FEB319 !important;
     color: ghostwhite !important;
 }
 
 .tooltip.bs-tooltip-right .arrow:before {
-    border-right-color: teal !important;
+    border-right-color: #FEB319 !important;
 }
 
 .tooltip.bs-tooltip-left .arrow:before {
-    border-left-color: teal !important;
+    border-left-color: #FEB319 !important;
 }
 
 .tooltip.bs-tooltip-bottom .arrow:before {
-    border-bottom-color: teal !important;
+    border-bottom-color: #FEB319 !important;
 }
 
 .tooltip.bs-tooltip-top .arrow:before {
-    border-top-color: teal !important;
+    border-top-color: #FEB319 !important;
 }
 
 .tooltip-bottom {
@@ -360,7 +371,7 @@ body {
     .tooltip-bottom .tooltiptext {
         visibility: hidden;
         width: 120px;
-        background-color: teal;
+        background-color: #FEB319;
         color: white;
         text-align: center;
         border-radius: 6px;
@@ -377,7 +388,7 @@ body {
     }
 
 .hr-light {
-    color: teal !important;
+    color: #FEB319 !important;
     opacity: 1;
 }
 
@@ -409,13 +420,13 @@ body {
 }
 
 .scroll-teal::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb {
-    background-color: teal; /* color of the scroll thumb */
+    background-color: #FEB319; /* color of the scroll thumb */
     border-radius: 20px; /* roundness of the scroll thumb */
     border: 3px solid ghostwhite; /* creates padding around scroll thumb */
 }
 
 
-.form-contato-sugestao{
+.form-contato-sugestao {
     border-radius: 50px;
     padding: 30px;
 }
@@ -423,12 +434,88 @@ body {
 
 
 /*TEXTO*/
-.texto-teal{
-    color: teal;
+.texto-teal {
+    color: #FEB319;
 }
 
-.texto-bold{
+.texto-bold {
     font-weight: bold;
 }
 
+
+
+.text-link {
+    color: #FEB319;
+    text-decoration: none !important;
+    font-weight: bold !important;
+}
+
+    .text-link:hover {
+        transition: 0.3s !important;
+        transform: scale(1.05) !important;
+        color: #FEB31955 !important;
+    }
 /*FIM TEXTO*/
+.footer-contatos {
+}
+
+    .footer-contatos img {
+        width: 30px;
+        height: 30px;
+    }
+
+    .footer-contatos a {
+        cursor: pointer;
+    }
+
+        .footer-contatos a:hover {
+            transform: scale(1.1) !important;
+            transition: all 0.5s;
+        }
+
+
+
+.pnl-visao-valores {
+    
+}
+
+    .pnl-visao-valores h1, h2 {
+        font-size: 42px;
+        line-height: 46px;
+        font-weight: bold;
+    }
+
+.pnl-txt-valores p {
+    line-height: 25px;
+    font-size: 17px;
+}
+
+
+.card-sobre-politico {
+    box-shadow: 1px 1px 50px 1px #00000066;
+    width: 314px;
+    height: 320px;
+    padding: 1.5rem;
+
+}
+
+    .card-sobre-politico strong {
+        font-size: 20px;
+        font-family: Poppins-Light;
+        line-height: 25px;
+    }
+
+    .card-sobre-politico p {
+        font-size: 14px;
+        font-family: Poppins-Light;
+        line-height: 18px;
+        color: #666666;
+        margin-top: 1rem;
+      
+    }
+
+    .card-sobre-politico .published {
+        color: #666666;
+        text-decoration: none;
+        
+    }

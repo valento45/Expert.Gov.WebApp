@@ -21,20 +21,21 @@ namespace Expert.Gov.WebApp.Authorization
         }
 
 
-        public Task AddClaimsAsync(Usuario user, IEnumerable<Claim> claims, CancellationToken cancellationToken)
+        public async Task AddClaimsAsync(Usuario user, IEnumerable<Claim> claims, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+
         }
 
         public async Task<IdentityResult> CreateAsync(Usuario user, CancellationToken cancellationToken)
         {
-            var inserted = await _connection.ExecuteAsync("insert into sys.cadastroUsuario_tb (nome, normalizedLogin, senha, " +
+            var inserted = await _connection.ExecuteAsync("insert into cadastro_usuario_tb (nome, normalizedNome, user_name, senha, " +
                 " endereco, numero, cidade, cep, celular, email)" +
-                " values (@nome, @normalizedLogin, @senha,  @endereco, @numero, @cidade, @cep, @celular, @email)",
+                " values (@nome, @normalizedNome, @user_name, @senha,  @endereco, @numero, @cidade, @cep, @celular, @email)",
                 new
                 {
                     nome = user.Nome,
-                    normalizedLogin = user.NormalizedUserName,
+                    normalizedNome = user.NormalizedUserName,
+                    user_name = user.UserName,
                     senha = user.PasswordHash,
                     endereco = user.Endereco,
                     numero = user.Numero,
@@ -42,7 +43,7 @@ namespace Expert.Gov.WebApp.Authorization
                     cep = user.Cep,
                     celular = user.Celular,
                     email = user.Email
-                  
+
                 });
 
             if (inserted > 0)
@@ -52,94 +53,109 @@ namespace Expert.Gov.WebApp.Authorization
 
         }
 
-        public Task<IdentityResult> DeleteAsync(Usuario user, CancellationToken cancellationToken)
+        public async Task<IdentityResult> DeleteAsync(Usuario user, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var identityResult = new IdentityResult();
+
+
+            var success = await _usuarioRepository.ExcluirUsuario(user.Id_CadastroUsuario);
+
+            if (!success)            
+                identityResult.Errors.ToList().Add(new IdentityError { Code = "500", Description = "Erro ao excluir usuário" });
+            
+
+            return identityResult;
+           
         }
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+
         }
 
-        public Task<Usuario?> FindByIdAsync(string userId, CancellationToken cancellationToken)
+        public async Task<Usuario?> FindByIdAsync(string userId, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await _usuarioRepository.GetById(long.Parse(userId));
         }
 
-        public Task<Usuario?> FindByNameAsync(string normalizedUserName, CancellationToken cancellationToken)
+        public async Task<Usuario?> FindByNameAsync(string normalizedUserName, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await _usuarioRepository.ObterPorNome(normalizedUserName);
         }
 
-        public Task<IList<Claim>> GetClaimsAsync(Usuario user, CancellationToken cancellationToken)
+        public async Task<IList<Claim>> GetClaimsAsync(Usuario user, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return new List<Claim>();
         }
 
-        public Task<string?> GetNormalizedUserNameAsync(Usuario user, CancellationToken cancellationToken)
+        public async Task<string?> GetNormalizedUserNameAsync(Usuario user, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return user.NormalizedUserName;
         }
 
-        public Task<string?> GetPasswordHashAsync(Usuario user, CancellationToken cancellationToken)
+        public async Task<string?> GetPasswordHashAsync(Usuario user, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return user.PasswordHash;
         }
 
-        public Task<string> GetUserIdAsync(Usuario user, CancellationToken cancellationToken)
+        public async Task<string> GetUserIdAsync(Usuario user, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return user.Id_CadastroUsuario.ToString();
         }
 
-        public Task<string?> GetUserNameAsync(Usuario user, CancellationToken cancellationToken)
+        public async Task<string?> GetUserNameAsync(Usuario user, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return user.UserName;
         }
 
-        public Task<IList<Usuario>> GetUsersForClaimAsync(Claim claim, CancellationToken cancellationToken)
+        public async Task<IList<Usuario>> GetUsersForClaimAsync(Claim claim, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return new List<Usuario>();
         }
 
-        public Task<bool> HasPasswordAsync(Usuario user, CancellationToken cancellationToken)
+        public async Task<bool> HasPasswordAsync(Usuario user, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return !string.IsNullOrEmpty(user.Password);
         }
 
-        public Task RemoveClaimsAsync(Usuario user, IEnumerable<Claim> claims, CancellationToken cancellationToken)
+        public async Task RemoveClaimsAsync(Usuario user, IEnumerable<Claim> claims, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+
         }
 
-        public Task ReplaceClaimAsync(Usuario user, Claim claim, Claim newClaim, CancellationToken cancellationToken)
+        public async Task ReplaceClaimAsync(Usuario user, Claim claim, Claim newClaim, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+
         }
 
-        public Task SetNormalizedUserNameAsync(Usuario user, string? normalizedName, CancellationToken cancellationToken)
+        public async Task SetNormalizedUserNameAsync(Usuario user, string? normalizedName, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            user.normalizedNome = normalizedName;
         }
 
-        public Task SetPasswordHashAsync(Usuario user, string? passwordHash, CancellationToken cancellationToken)
+        public async Task SetPasswordHashAsync(Usuario user, string? passwordHash, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            user.PasswordHash = passwordHash;
         }
 
-        public Task SetUserNameAsync(Usuario user, string? userName, CancellationToken cancellationToken)
+        public async Task SetUserNameAsync(Usuario user, string? userName, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            user.UserName = user.UserName ?? string.Empty;
         }
 
-        public Task<IdentityResult> UpdateAsync(Usuario user, CancellationToken cancellationToken)
+        public async Task<IdentityResult> UpdateAsync(Usuario user, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
-        }
+            var identityResult = new IdentityResult();
 
-        Task<IdentityResult> IUserStore<Usuario>.CreateAsync(Usuario user, CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
+            var result = await _usuarioRepository.AtualizarUsuario(user);
+            if (result)            
+                return identityResult;
+            
+            else
+            {
+                identityResult.Errors.ToList().Add(new IdentityError { Code = "500" });
+                return identityResult;
+            }
         }
     }
 }

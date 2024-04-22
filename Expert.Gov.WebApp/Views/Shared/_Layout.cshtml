@@ -11,7 +11,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow nav-teal">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white box-shadow nav-teal">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Leo Pontes</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -28,21 +28,30 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="TrabalhoRealizado" asp-action="TrabalhosRealizados">Nossos Trabalhos</a>
                         </li>
 
-                        <li class="nav-item">
+                        <li class="nav-item d-none">
                             <a class="nav-link text-dark" asp-area="" asp-controller="TrabalhoRealizado" asp-action="TrabalhosRealizados">Comunidade</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Contato" asp-action="SolicitarMelhorias">Fale conosco</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Contato" asp-action="InserirSolicitacao">Fale conosco</a>
                         </li>
+
+
+                        <li class="nav-item ">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="CadastroUsuario">Cad. Usuario</a>
+                        </li>
+                    </ul>
+
+
+                    <ul class="navbar-nav">
 
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Contato" asp-action="SolicitarMelhorias">Sobre</a>
-                        </li>
-
-                       
-                        <li class="nav-item d-none">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="CadastroUsuario">Cad. Usuario</a>
+                            <div class="nav-right">
+                                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Login">
+                                    <img class="img-icon-nav mx-2" src="~/imgs/login-white.png" />
+                                    Login
+                                </a>
+                            </div>
                         </li>
                     </ul>
                 </div>
@@ -50,15 +59,44 @@
         </nav>
     </header>
 
-    <main role="main" class="pb-3">
+    <main role="main" class=" mb-2">
         @RenderBody()
     </main>
 
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - Expert.Gov.WebApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <footer class="border-top footer text-muted" style="position: relative !important;">
+        <div class=" col-sm-12 d-sm-inline-flex ">
+
+            <div class="container col-sm-8 mb-4 p-3 mt-2 ps-5" style="display: flex;    flex-wrap: wrap;">
+                &copy; 2024 &nbsp; Leo Pontes - &nbsp; <a asp-area="" asp-controller="Home" asp-action="Privacy" class="link-redirect-orange" style="color: #008080 ; text-decoration: none;">Políticas de privacidade</a>
+                &nbsp; Desenvolvido por - <a href="https://www.instagram.com/ihc_digitalsolutions/" target="_blank"
+                                             class="link-redirect-orange ps-3" style="color: #008080 ; text-decoration: none;">IHC Digital Solutions</a>
+            </div>
+
+
+
+            <div class="container d-inline-flex col-sm-4 d-sm-flex footer-contatos justify-content-center  p-3 mb-1 mt-2">
+                <div class="col-sm-1 ">
+                    <a href="https://wa.me/5511999957297" target="_blank">
+                        <img src="~/imgs/wpp-icon-png.png" />
+                    </a>
+                </div>
+
+                <div class="col-sm-1 ">
+                    <a href="https://www.instagram.com/leopontessp/" target="_blank">
+                        <img src="~/imgs/insta-icon2.png" />
+                    </a>
+                </div>
+
+                <div class="col-sm-1 ">
+                    <a href="https://www.linkedin.com/in/igor-carvalho-022b9818b/" target="_blank">
+                        <img src="~/imgs/linkedin-icon.png" />
+                    </a>
+                </div>
+
+            </div>
         </div>
+
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

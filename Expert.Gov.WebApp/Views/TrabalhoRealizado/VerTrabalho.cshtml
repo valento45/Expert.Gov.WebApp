@@ -1,0 +1,64 @@
+﻿@using Expert.Gov.Core.Models.TrabalhosRealizados;
+@model TrabalhoRealizado
+
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Trabalho realizado";
+}
+
+<div class="mt-5 mb-5 container container-ghost">
+
+    <div class="col-lg-12 d-inline-flex">
+        <h4 class="col-lg-10">@Model.Descricao</h4>
+    </div>
+    <hr />
+
+
+    <div class="mt-5 col-lg-12 d-sm-inline-flex">
+
+        <div class="col-lg-6">
+            <div class="slideshow-container">
+
+                @if (Model.Imagens?.Any() ?? false)
+                {
+                    @foreach (var img in Model.Imagens)
+                    {
+                        var imgBase64 = img.Anexo_Base64;
+
+                        <div class="mySlides">
+                            <img src="data:image/png;base64,@imgBase64" style="width:100%; border-radius: 50px;">
+                        </div>
+                    }
+                }
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            </div>
+        </div>
+
+
+        <div class="col-lg-6 container-ghost">
+
+            <h4 class="mb-5">@Model.Descricao</h4>
+
+            <p style="word-wrap: break-word;">@Model.Resumo</p>
+            <p>Endereço: @Model.Endereco</p>
+            <p>Data: @Model.Data_Hora.ToString("dd/MM/yyyy")</p>
+        </div>
+
+    </div>
+
+
+
+
+</div>
+
+
+
+@section Scripts{
+    <script src="~/js/Portfolios/listaPortfolios.js" asp-append-version="true"></script>
+
+
+}
+
+

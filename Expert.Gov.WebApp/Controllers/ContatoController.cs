@@ -1,40 +1,23 @@
-﻿using Expert.Gov.Core.Models.SolicitacaoSugestao;
+﻿using Expert.Gov.Core.Authorization;
+using Expert.Gov.Core.Models.SolicitacaoSugestao;
 using Expert.Gov.Core.Models.TrabalhosRealizados;
 using Expert.Gov.Core.Services.Interfaces;
 using Expert.Gov.WebApp.Applications.Interfaces;
 using Expert.Gov.WebApp.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Expert.Gov.WebApp.Controllers
 {
-    public class ContatoController : Controller
+    public class ContatoController : ControllerBase
     {
         private readonly ISolicitacaoApplication _solicitacaoApplication;
 
-        public ContatoController(ISolicitacaoApplication solicitacaoApplication)
+        public ContatoController(ISolicitacaoApplication solicitacaoApplication, UserManager<Usuario> userManager) : base(userManager)
         {
             _solicitacaoApplication = solicitacaoApplication;
         }
 
-        //[HttpGet]
-        //public async Task<IActionResult> SolicitarMelhorias()
-        //{
-        //    return View();
-        //}
-
-        [HttpGet]
-        public async Task<IActionResult> SolicitarMelhorias()
-        {
-
-
-            var solicitacaoLista_ = new SolicitacoesLista();
-
-            solicitacaoLista_.ListaSolicitacoes = await _solicitacaoApplication.ObterTodasSolicitacaoes(new Solicitacao());
-
-
-
-            return View(solicitacaoLista_);
-        }
 
         [HttpGet]
         public async Task<IActionResult> InserirSolicitacao()
@@ -78,8 +61,24 @@ namespace Expert.Gov.WebApp.Controllers
             {
                 await _solicitacaoApplication.InserirSolicitacao(solicitacaoViewModel);
             }
-            return Ok(true);
 
+            MessageViewModel message = new MessageViewModel("Solicitação incluída com sucesso!", 
+                "Em breve entraremos em contato, obrigado.");
+            return View("SucessoMessage", message);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> SolicitarMelhorias()
+        {
+
+
+            var solicitacaoLista_ = new SolicitacoesLista();
+
+            solicitacaoLista_.ListaSolicitacoes = await _solicitacaoApplication.ObterTodasSolicitacaoes(new Solicitacao());
+
+
+
+            return View(solicitacaoLista_);
         }
 
         public async Task<IActionResult> ExcluirAnexo(long Id_Solicitacao)
@@ -98,12 +97,6 @@ namespace Expert.Gov.WebApp.Controllers
 
 
 
-        //[HttpGet]
-        //public async Task<IActionResult> VerSolicitacoesRecebidas()
-        //{
-        //    var solicitacoes = await _solicitacaoApplication.ConsultarSolicitacoes();
-        //    return View(solicitacoes);
-        //}
 
     }
 }

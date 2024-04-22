@@ -1,18 +1,20 @@
-﻿using Expert.Gov.Core.Models.TrabalhosRealizados;
+﻿using Expert.Gov.Core.Authorization;
+using Expert.Gov.Core.Models.TrabalhosRealizados;
 using Expert.Gov.Core.Request.TrabalhosRequest;
 using Expert.Gov.WebApp.Applications.Interfaces;
 using Expert.Gov.WebApp.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Npgsql.Replication.PgOutput.Messages;
 using System.Diagnostics;
 
 namespace Expert.Gov.WebApp.Controllers
 {
-    public class TrabalhoRealizadoController : Controller
+    public class TrabalhoRealizadoController : ControllerBase
     {
         private readonly IPortfolioApplication _portfolioApplication;
 
-        public TrabalhoRealizadoController(IPortfolioApplication portfolioApplication)
+        public TrabalhoRealizadoController(IPortfolioApplication portfolioApplication, UserManager<Usuario> userManager) : base(userManager)
         {
             _portfolioApplication = portfolioApplication;
         }
@@ -26,7 +28,7 @@ namespace Expert.Gov.WebApp.Controllers
 
             trabalhoRealizadoLista_.ListaTrabalhosRealizados = await _portfolioApplication.ObterTodosPortfolios(new TrabalhoRealizado());
 
-        
+
             return View(trabalhoRealizadoLista_);
         }
 
@@ -42,7 +44,6 @@ namespace Expert.Gov.WebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> SalvarTrabalho(PortfolioViewModel portfolioViewModel)
         {
-
 
             if (portfolioViewModel.Id_Portfolio > 0)
             {
@@ -60,16 +61,18 @@ namespace Expert.Gov.WebApp.Controllers
             {
                 await _portfolioApplication.IncluirPortfolio(portfolioViewModel);
             }
-            return Ok(true);
+
+            MessageViewModel message = new MessageViewModel("Trabalho incluído com sucesso!", "Gerencia no painel de administrador os trabalhos realizados.");
+            return View("SucessoMessage", message);
 
         }
-  
-         public async Task<IActionResult> ExcluirAnexo(long Id_Portfolio)
-         {
+
+        public async Task<IActionResult> ExcluirAnexo(long Id_Portfolio)
+        {
             var result = await _portfolioApplication.ExcluirAnexo(Id_Portfolio);
 
             return RedirectToAction(nameof(TrabalhosRealizados));
-         }
+        }
 
         [HttpGet]
         public async Task<IActionResult> ExcluirTrabalho(long id)
@@ -81,7 +84,7 @@ namespace Expert.Gov.WebApp.Controllers
 
         }
 
-    
+
         public async Task<IActionResult> EditarTrabalho(long id)
         {
             var result = await _portfolioApplication.ObterPorId(id);
@@ -95,15 +98,17 @@ namespace Expert.Gov.WebApp.Controllers
             portfolioViewModel.Local = result.Endereco;
 
 
-            if (result)
-            {
-                var message = new MessageViewModel("Trabalho/Portfólio incluído com sucesso!");
-                return View("SucessoMessage", message);
-            }
-            else
-                throw new Exception("Não foi possível incluir o portfólio. Por favor, tente mais tarde.");            
-           
+            return View(nameof(IncluirTrabalho), portfolioViewModel);
+
         }
-  
+
+        [HttpPost]
+        public async Task<IActionResult> VerTrabalho([FromBody] TrabalhoRealizado trabalhoRealizado)
+        {
+
+
+            return View(trabalhoRealizado);
+        }
+
     }
 }

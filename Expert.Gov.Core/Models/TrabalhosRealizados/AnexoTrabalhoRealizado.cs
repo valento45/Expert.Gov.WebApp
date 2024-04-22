@@ -11,18 +11,18 @@ namespace Expert.Gov.Core.Models.TrabalhosRealizados
     {
         public int Id_Anexo { get; set; }
         public long Id_Portfolio { get; set; }
-        public string Anexo_Base64 { get; private set; }
-        public string Extensao_Arquivo { get; private set; }
+        public string Anexo_Base64 { get; set; }
+        public string Extensao_Arquivo { get; set; }
 
- 
+
         public AnexoTrabalhoRealizado()
         {
-            
+
         }
 
         public AnexoTrabalhoRealizado(DataRow dr)
         {
-            
+
         }
 
         public AnexoTrabalhoRealizado(long idPortfolio)
@@ -38,7 +38,7 @@ namespace Expert.Gov.Core.Models.TrabalhosRealizados
 
         public void InformarExtensao(string extensao)
         {
-            Extensao_Arquivo = extensao; 
+            Extensao_Arquivo = extensao;
         }
     }
 }

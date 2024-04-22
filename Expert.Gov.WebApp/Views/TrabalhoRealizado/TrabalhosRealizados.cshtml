@@ -1,4 +1,7 @@
-﻿@using Expert.Gov.Core.Models.TrabalhosRealizados
+﻿@using Expert.Gov.Core.Extensions;
+@using Expert.Gov.Core.Models.TrabalhosRealizados
+@using Newtonsoft.Json;
+
 @model TrabalhosRealizadosLista
 
 
@@ -52,29 +55,38 @@
 
 
     <!--Trabalhos realizados Normal-->
-    <form>
+    <form class="mt-5 pb-5 d-flex justify-content-center">
 
-        <div class="col-lg-12 d-sm-inline-flex">
+        <div class="col-lg-12 d-sm-inline-flex" style="flex-wrap: wrap; place-content: center;">
 
             @foreach (var trabRealizado in Model.ListaTrabalhosRealizados)
             {
-                <div class="card-portfolio">
+                <div class="card-portfolio" onclick="onClickVerTrabalho(@JsonConvert.SerializeObject(trabRealizado))">
                     @if (trabRealizado.Imagens.Any())
                     {
                         var imagem = @trabRealizado.Imagens?.FirstOrDefault();
-                        <img src="data:image/png;base64,@imagem.Anexo_Base64" style="width: 80%; height: 65%;" />
+                        <img src="data:image/png;base64,@imagem.Anexo_Base64" style="width: 100%; height: 65%;" />
                     }
                     else
                     {
-                        <img src="~/imgs/fundo 1.jpg" style="width: 80%; height: 65%;" />
+                        <img src="~/imgs/fundo 1.jpg" style="width: 100%; height: 65%;" />
                     }
 
-                    <p style="overflow-wrap: break-word;">@trabRealizado.Descricao</p>
-                    <p style="overflow-wrap: break-word;">@trabRealizado.Data_Hora.ToString("dd/MM/yyyy")</p>
-                    <p style="overflow-wrap: break-word;">@trabRealizado.Endereco</p>
+                    <p class="mt-1" style="overflow-wrap: break-word;"><b>@trabRealizado.Descricao.ObterTextoSimplificado(80)</b></p>
+
+                    <div style="display: grid;">
+                        <small>@trabRealizado.Resumo.ObterTextoSimplificado() <b>...Ver mais</b></small>
+                        <small style="overflow-wrap: break-word;">@trabRealizado.Endereco</small>
+                    </div>
                 </div>
             }
 
         </div>
     </form>
 </div>
+
+
+
+@section Scripts{
+    <script src="~/js/Portfolios/listaPortfolios.js" asp-append-version="true"></script>
+}

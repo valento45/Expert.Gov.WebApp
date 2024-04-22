@@ -12,8 +12,8 @@ namespace Expert.Gov.Core.Repositorys.Interfaces
         Task<bool> IncluirUsuario(Usuario user);
         Task<bool> AtualizarUsuario(Usuario user);
         Task<bool> ExcluirUsuario(long id);
-        Task<Usuario?> ObterPorNome();
-        Task<Usuario> GetById();
+        Task<Usuario?> ObterPorNome(string userNameNormalized);
+        Task<Usuario> GetById(long idUsuario);
         Task<string> GetMessage();
 
         Task<IEnumerable<Usuario>> GetAll();

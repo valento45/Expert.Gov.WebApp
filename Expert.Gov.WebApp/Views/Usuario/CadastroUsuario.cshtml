@@ -1,84 +1,6 @@
 ﻿@model UsuarioViewModel
 
-@* <div class="container mt-5 container-ghost"> *@
 
- @*     <h4>
-        Cadastro Usuário
-     </h4>
-     <hr />
-
-     <div class="form-cadastro-usuario mt-3 col-lg-6">
-
-         <h5 class="texto teal"> Cadastre seu Usuario</h5>
-
-         <div class="form-outline mb-4 ag-field-content">
-
-            <div class="form-outline mb-4 ag-field-content">
-                <input type="text" id="txtEmail" class="form-control ag-field-input ag-input-color-orange-full" autocomplete="off" required />
-                <label class="form-label text-semi-bold-light ag-field-label" for="form2Example2">Nome Completo</label>
-            </div>
-
-            <div class="form-outline mb-4 ag-field-content">
-                <input type="text" id="txtEmail" class="form-control ag-field-input ag-input-color-orange-full" autocomplete="off" required />
-                <label class="form-label text-semi-bold-light ag-field-label" for="form2Example2">Senha</label>
-            </div>
-
-            <div class="mb-4">
-                <a>( 0 ) Anexos adicionados</a>
-                <button type="submit" class="btn btn-teal ms-3">Carregar Foto de Perfil</button>
-            </div>
-
-            <div class="form-outline mb-4 ag-field-content">
-                <input type="text" id="txtEmail" class="form-control ag-field-input ag-input-color-orange-full" autocomplete="off" required />
-                <label class="form-label text-semi-bold-light ag-field-label" for="form2Example2">E-mail</label>
-            </div>
-
-            <div class="col-lg-12">
-                <div class="form-outline mb-4 ag-field-content col-lg-6">
-                    <input type="text" id="txtEmail" class="form-control ag-field-input ag-input-color-orange-full" autocomplete="off" required />
-                    <label class="form-label text-semi-bold-light ag-field-label" for="form2Example2">Celular com DDD</label>
-                </div>
-            </div>
-
-
-            <div class="col-lg-12">
-                <div class="form-outline mb-4 ag-field-content col-lg-6">
-                    <input type="text" id="txtEmail" class="form-control ag-field-input ag-input-color-orange-full" autocomplete="off" required />
-                    <label class="form-label text-semi-bold-light ag-field-label" for="form2Example2">CEP</label>
-                </div>
-            </div>
-
-
-            <div class="col-lg-12 d-inline-flex">
-                <div class="form-outline mb-4 ag-field-content col-lg-10 col-sm-10">
-                    <input type="text" id="txtEmail" class="form-control ag-field-input ag-input-color-orange-full" autocomplete="off" required />
-                    <label class="form-label text-semi-bold-light ag-field-label" for="form2Example2">Endereço</label>
-                </div>
-
-                <div class="col-lg-2 col-sm-2  ag-field-content ms-2">
-                    <input type="number" id="txtEmail" class="form-control ag-field-input ag-input-color-orange-full" autocomplete="off" required />
-                    <label class="form-label text-semi-bold-light ag-field-label" for="form2Example2">Nº</label>
-                </div>
-            </div>
-
-            <div class="col-lg-12">
-                <div class="form-outline mb-4 ag-field-content col-lg-10 col-sm-10">
-                    <input type="text" id="txtEmail" class="form-control ag-field-input ag-input-color-orange-full" autocomplete="off" required />
-                    <label class="form-label text-semi-bold-light ag-field-label" for="form2Example2">Cidade</label>
-                </div>
-
-
-
-                <div class="mt-5">
-
-                    <button type="submit" class="btn btn-teal ms-5">Cadastrar</button>
-                    <button type="button" class="btn btn-voltar ms-1">Voltar</button>
-
-
-                </div>
-
-            </div> *@
-@* </div> *@
 <div class="container mt-5 container-ghost">
     <h4>
         Cadastro Usuário
@@ -86,77 +8,81 @@
     <hr />
     @* <div class="form-cadastro-usuario mt-3 col-lg-6"> *@
     <form class="form-contato-sugestao mt-3 col-lg-6" asp-action="SalvarUsuario" asp-controller="Usuario" method="post" enctype="multipart/form-data">
-      
+
         <input id="txtCodigo" type="hidden" asp-for="Id_CadastroUsuario" />
         <h5 class="texto teal"> Cadastre seu Usuario</h5>
 
+
         <div class="form-outline mb-4 ag-field-content">
+            <input asp-for="Nome" type="text" id="txtEmail" class="form-control ag-field-input ag-input-color-orange-full" autocomplete="off" required />
+            <label class="form-label text-semi-bold-light ag-field-label" for="form2Example2">Nome Completo</label>
+        </div>
 
-            <div class="form-outline mb-4 ag-field-content">
-                <input type="text" id="txtEmail" class="form-control ag-field-input ag-input-color-orange-full" autocomplete="off" required />
-                <label class="form-label text-semi-bold-light ag-field-label" for="form2Example2">Nome Completo</label>
+        <div class="form-outline mb-4 ag-field-content">
+            <input asp-for="Usuario" type="text" id="txtEmail" class="form-control ag-field-input ag-input-color-orange-full" autocomplete="off" required />
+            <label class="form-label text-semi-bold-light ag-field-label" for="form2Example2">Login</label>
+        </div>
+
+        <div class="form-outline mb-4 ag-field-content">
+            <input asp-for="Password" type="text" id="txtEmail" class="form-control ag-field-input ag-input-color-orange-full" autocomplete="off" required />
+            <label class="form-label text-semi-bold-light ag-field-label" for="form2Example2">Senha</label>
+        </div>
+
+        <div class="mb-4">
+            <a>( 0 ) Anexos adicionados</a>
+            <button type="submit" class="btn btn-teal ms-3">Carregar Foto de Perfil</button>
+        </div>
+
+        <div class="form-outline mb-4 ag-field-content">
+            <input asp-for="Email" type="text" id="txtEmail" class="form-control ag-field-input ag-input-color-orange-full" autocomplete="off" required />
+            <label class="form-label text-semi-bold-light ag-field-label" for="form2Example2">E-mail</label>
+        </div>
+
+        <div class="col-lg-12">
+            <div class="form-outline mb-4 ag-field-content col-lg-6">
+                <input asp-for="Celular" type="text" id="txtEmail" class="form-control ag-field-input ag-input-color-orange-full" autocomplete="off" required />
+                <label class="form-label text-semi-bold-light ag-field-label" for="form2Example2">Celular com DDD</label>
+            </div>
+        </div>
+
+
+        <div class="col-lg-12">
+            <div class="form-outline mb-4 ag-field-content col-lg-6">
+                <input asp-for="Cep" type="text" id="txtEmail" class="form-control ag-field-input ag-input-color-orange-full" autocomplete="off" required />
+                <label class="form-label text-semi-bold-light ag-field-label" for="form2Example2">CEP</label>
+            </div>
+        </div>
+
+
+        <div class="col-lg-12 d-inline-flex">
+            <div class="form-outline mb-4 ag-field-content col-lg-10 col-sm-10">
+                <input asp-for="Endereco" type="text" id="txtEmail" class="form-control ag-field-input ag-input-color-orange-full" autocomplete="off" required />
+                <label class="form-label text-semi-bold-light ag-field-label" for="form2Example2">Endereço</label>
             </div>
 
-            <div class="form-outline mb-4 ag-field-content">
-                <input type="text" id="txtEmail" class="form-control ag-field-input ag-input-color-orange-full" autocomplete="off" required />
-                <label class="form-label text-semi-bold-light ag-field-label" for="form2Example2">Senha</label>
+            <div class="col-lg-2 col-sm-2  ag-field-content ms-2">
+                <input asp-for="Numero" type="number" id="txtEmail" class="form-control ag-field-input ag-input-color-orange-full" autocomplete="off" required />
+                <label class="form-label text-semi-bold-light ag-field-label" for="form2Example2">Nº</label>
             </div>
+        </div>
 
-            <div class="mb-4">
-                <a>( 0 ) Anexos adicionados</a>
-                <button type="submit" class="btn btn-teal ms-3">Carregar Foto de Perfil</button>
+        <div class="col-lg-12">
+            <div class="form-outline mb-4 ag-field-content col-lg-10 col-sm-10">
+                <input asp-for="Cidade" type="text" id="txtEmail" class="form-control ag-field-input ag-input-color-orange-full" autocomplete="off" required />
+                <label class="form-label text-semi-bold-light ag-field-label" for="form2Example2">Cidade</label>
             </div>
-
-            <div class="form-outline mb-4 ag-field-content">
-                <input type="text" id="txtEmail" class="form-control ag-field-input ag-input-color-orange-full" autocomplete="off" required />
-                <label class="form-label text-semi-bold-light ag-field-label" for="form2Example2">E-mail</label>
-            </div>
-
-            <div class="col-lg-12">
-                <div class="form-outline mb-4 ag-field-content col-lg-6">
-                    <input type="text" id="txtEmail" class="form-control ag-field-input ag-input-color-orange-full" autocomplete="off" required />
-                    <label class="form-label text-semi-bold-light ag-field-label" for="form2Example2">Celular com DDD</label>
-                </div>
-            </div>
+        </div>
 
 
-            <div class="col-lg-12">
-                <div class="form-outline mb-4 ag-field-content col-lg-6">
-                    <input type="text" id="txtEmail" class="form-control ag-field-input ag-input-color-orange-full" autocomplete="off" required />
-                    <label class="form-label text-semi-bold-light ag-field-label" for="form2Example2">CEP</label>
-                </div>
-            </div>
+        <div class="mt-5">
+
+            <button type="submit" class="btn btn-teal ms-4">Cadastra</button>
+            <button type="button" class="btn btn-voltar ms-1">Voltar</button>
 
 
-            <div class="col-lg-12 d-inline-flex">
-                <div class="form-outline mb-4 ag-field-content col-lg-10 col-sm-10">
-                    <input type="text" id="txtEmail" class="form-control ag-field-input ag-input-color-orange-full" autocomplete="off" required />
-                    <label class="form-label text-semi-bold-light ag-field-label" for="form2Example2">Endereço</label>
-                </div>
+        </div>
 
-                <div class="col-lg-2 col-sm-2  ag-field-content ms-2">
-                    <input type="number" id="txtEmail" class="form-control ag-field-input ag-input-color-orange-full" autocomplete="off" required />
-                    <label class="form-label text-semi-bold-light ag-field-label" for="form2Example2">Nº</label>
-                </div>
-            </div>
-
-            <div class="col-lg-12">
-                <div class="form-outline mb-4 ag-field-content col-lg-10 col-sm-10">
-                    <input type="text" id="txtEmail" class="form-control ag-field-input ag-input-color-orange-full" autocomplete="off" required />
-                    <label class="form-label text-semi-bold-light ag-field-label" for="form2Example2">Cidade</label>
-                </div>
-
-
-
-                <div class="mt-5">
-
-                    <button type="submit" class="btn btn-teal ms-4">Cadastra</button>
-                    <button type="button" class="btn btn-voltar ms-1">Voltar</button>
-
-
-                </div>
-
-   </form>
+    </form>
 </div>
 
 @section Scripts{

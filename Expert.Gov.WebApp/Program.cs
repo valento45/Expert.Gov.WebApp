@@ -1,4 +1,7 @@
+using Expert.Gov.Core.Authorization;
+using Expert.Gov.WebApp.Authorization;
 using Expert.Gov.WebApp.Configuration.InjectDependences;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +12,16 @@ builder.Services.AddRepositorys();
 builder.Services.AddServices();
 builder.Services.AddApplications();
 builder.Services.AddDataBaseConfiguration(builder.Configuration);
+
+
+
+builder.Services.AddIdentityCore<Usuario>(options => { });
+builder.Services.AddScoped<IUserStore<Usuario>, UsuarioStore>();
+
+builder.Services.AddAuthentication("cookies")
+    .AddCookie("cookies", options =>
+    options.LoginPath = "/Home/Login"
+    );
 
 
 var app = builder.Build();

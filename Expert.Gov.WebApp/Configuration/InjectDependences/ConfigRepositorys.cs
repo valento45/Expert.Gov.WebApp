@@ -13,6 +13,7 @@ namespace Expert.Gov.WebApp.Configuration.InjectDependences
         {
             services.AddTransient<ISolicitacaoRepository, SolicitacaoRepository>();
             services.AddTransient<IPortfolioRepository, PortfolioRepository>();
+            services.AddTransient<IUsuarioRepository, UsuarioRepository>();
         }
 
         public static void AddDataBaseConfiguration(this IServiceCollection services, IConfiguration configuration)

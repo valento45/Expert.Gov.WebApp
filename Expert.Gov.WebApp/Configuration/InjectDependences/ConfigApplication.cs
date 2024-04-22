@@ -11,6 +11,7 @@ namespace Expert.Gov.WebApp.Configuration.InjectDependences
         {
             services.AddTransient<IPortfolioApplication, PortfolioApplication>();
             services.AddTransient<ISolicitacaoApplication, SolicitacaoApplication>();
+            services.AddTransient<IUsuarioApplication, UsuarioApplication>();
         }
     }
 }

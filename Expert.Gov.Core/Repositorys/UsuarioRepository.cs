@@ -1,4 +1,6 @@
-﻿using Expert.Gov.Core.Authorization;
+﻿using Dapper;
+using Expert.Gov.Core.Authorization;
+using Expert.Gov.Core.Authorization.Dto;
 using Expert.Gov.Core.Repositorys.Interfaces;
 using Npgsql;
 using System;
@@ -20,9 +22,9 @@ namespace Expert.Gov.Core.Repositorys
         {
         }
 
-        public async Task<bool> IncluirUsuario(Usuario user )
+        public async Task<bool> IncluirUsuario(Usuario user)
         {
-            NpgsqlCommand cmd = new NpgsqlCommand("insert into sys.cadastroUsuario_tb (nome, normalizedLogin, senha, " +
+            NpgsqlCommand cmd = new NpgsqlCommand("insert into cadastro_usuario_tb (nome, normalizedLogin, senha, " +
                 "endereco, numero, cidade, cep, celular, email) returning id_cadastrousuario;");
 
             cmd.Parameters.AddWithValue(@"nome", user.Nome);
@@ -49,7 +51,7 @@ namespace Expert.Gov.Core.Repositorys
 
         public async Task<bool> AtualizarUsuario(Usuario user)
         {
-            NpgsqlCommand cmd = new NpgsqlCommand("update sys.cadastroUsuario_tb set nome = @nome, normalizedLogin = @normalizedLogin" +
+            NpgsqlCommand cmd = new NpgsqlCommand("update cadastro_usuario_tb set nome = @nome, normalizedLogin = @normalizedLogin" +
                 " senha = @senha, endereco = @endereco, numero = @numero, cidade = @cidade, cep = @cep, celular = @celular" +
                 " , email = @email where id_usuario = @id_cadastrousuario");
 
@@ -72,10 +74,10 @@ namespace Expert.Gov.Core.Repositorys
 
         public async Task<bool> ExcluirUsuario(long id)
         {
-            string query = $"delete from sys.cadastroUsuario_tb where id_cadastrousuario = {id}";
+            string query = $"delete from cadastro_usuario_tb where id_cadastrousuario = {id}";
 
             if (await base.ExecuteAsync(query))
-                return await base.ExecuteAsync($"delete from sys.cadastroUsuario_tb where id_cadastrousuario = {id}");
+                return await base.ExecuteAsync($"delete from cadastro_usuario_tb where id_cadastrousuario = {id}");
 
             return false;
         }
@@ -88,26 +90,28 @@ namespace Expert.Gov.Core.Repositorys
         public Task<IEnumerable<Usuario>> GetAllAdministradores()
         {
             throw new NotImplementedException();
+        }      
+
+
+        async Task<string> IUsuarioRepository.GetMessage()
+        {
+            return Message;
         }
 
-        public Task<Usuario> GetById()
+        public async Task<Usuario?> ObterPorNome(string userNameNormalized)
         {
-            throw new NotImplementedException();
+            string query = $"select * from cadastro_usuario_tb where UPPER(nome) LIKE '{userNameNormalized.ToUpper()}'";
+            var usuarioDto = await base._dbConnection.QueryAsync<UsuarioDto>(query);
+
+            return usuarioDto.FirstOrDefault()?.ToUsuario() ?? null;
         }
 
-        public Task<bool> Incluir()
+        public async Task<Usuario> GetById(long idUsuario)
         {
-            throw new NotImplementedException();
-        }
+            string query = $"select * from cadastro_usuario_tb where id_cadastroUsuario = {idUsuario}";
+            var usuarioDto = await base._dbConnection.QueryAsync<UsuarioDto>(query);
 
-        public Task<Usuario?> ObterPorNome()
-        {
-            throw new NotImplementedException();
-        }
-
-        Task<string> IUsuarioRepository.GetMessage()
-        {
-            throw new NotImplementedException();
+            return usuarioDto.FirstOrDefault()?.ToUsuario() ?? null;
         }
     }
 }

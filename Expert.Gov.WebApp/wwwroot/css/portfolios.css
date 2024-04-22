@@ -4,14 +4,61 @@
 
 .card-portfolio {
     width: 350px;
-    height: 350px;
-    border-radius: 50px;
+    height: 380px;
+    
     padding: 2rem;
 }
 
     .card-portfolio:hover {
         background-color: #00808055 !important;
         cursor: pointer;
-        transition: 0.2s;
+        transition: 0.5s;
         transform: scale(1.05);
+    }
+
+
+
+    .card-portfolio small {
+        word-wrap: break-word;
+        width: 300px;
+    }
+
+
+
+
+
+
+
+.slideshow-container {
+    max-width: 600px;
+    position: relative;
+    margin: auto;
+}
+
+.mySlides {
+    display: none;
+}
+
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+    .prev:hover, .next:hover {
+        background-color: rgba(0, 0, 0, 0.8);
     }
