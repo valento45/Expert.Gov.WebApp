@@ -87,11 +87,19 @@ namespace Expert.Gov.WebApp.Applications
         }
 
 
-       public Task<IEnumerable<Solicitacao>> ConsultarSolicitacoes()
-        { 
-            throw new NotImplementedException();
-        }
+     
 
-       
+        public async Task<Solicitacao?> GetById(long id)
+        {
+            var solicitacao = await _solicitacaoService.GetById(id); 
+
+            if(solicitacao != null)
+            {
+                var anexos = await _solicitacaoService.ObterAnexos(id);
+                solicitacao.Imagens = anexos.ToList();
+            }
+
+            return solicitacao;
+        }
     }
 }

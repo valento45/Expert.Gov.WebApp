@@ -36,6 +36,9 @@ namespace Expert.Gov.WebApp.Controllers
         [HttpGet]
         public async Task<IActionResult> Login()
         {
+            if (User != null)            
+                await base.Deslogar();
+            
             return View();
         }
 
@@ -43,13 +46,13 @@ namespace Expert.Gov.WebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Logar(LoginModel login)
         {
-
             var result = await base.Autenticar(login);
-            if (result)
+            if (result != null)
             {
-                return RedirectToAction(nameof(Index));
+                return View("Administrativo/PainelAdministrador", result);
             }
-            return View();
+
+            return View(login);
         }
     }
 }

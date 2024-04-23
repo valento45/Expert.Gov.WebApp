@@ -44,7 +44,7 @@ body {
 }
 
 .nav-teal {
-    background-color: #FEB319 !important;
+    background-color: #FA9211 !important;
 }
 
     .nav-teal a {
@@ -59,10 +59,39 @@ body {
             color: darkgoldenrod !important;
         }
 
-.img-icon-nav {
 
-    width: 35px;
-    height: 35px;
+
+.nav-administrativo {
+    background-color: darkred !important;
+}
+
+    .nav-administrativo a {
+        font-weight: bold;
+        color: white !important;
+        font-family: Poppins-Light;
+    }
+
+        .nav-administrativo a:hover {
+            transform: scale(1.05);
+            transition: all 0.5s;
+            color: darkgoldenrod !important;
+        }
+
+
+
+
+.container-administrativo {
+}
+
+    .container-administrativo h1, .container-administrativo h2, .container-administrativo h3, .container-administrativo h4 {
+        color: brown;
+        font-weight: bold;
+        font-family: Poppins-Light;
+    }
+
+.img-icon-nav {
+    width: 30px;
+    height: 30px;
 }
 
 .container-teal {
@@ -87,18 +116,22 @@ body {
         color: #FEB319;
     }
 
-    .container-ghost small{
+    .container-ghost small {
         color: gray;
     }
 
-    .topo-home {
-        width: 100%;
-        height: 80vh;
+    .container-ghost  p b {
+        color: #FEB319 !important;
     }
+
+.topo-home {
+    width: 100%;
+    height: 100vh;
+}
 
     .topo-home img {
         width: 100%;
-        height: 105%;
+        height: 100%;
     }
 
 
@@ -476,7 +509,6 @@ body {
 
 
 .pnl-visao-valores {
-    
 }
 
     .pnl-visao-valores h1, h2 {
@@ -496,7 +528,6 @@ body {
     width: 314px;
     height: 320px;
     padding: 1.5rem;
-
 }
 
     .card-sobre-politico strong {
@@ -511,11 +542,95 @@ body {
         line-height: 18px;
         color: #666666;
         margin-top: 1rem;
-      
     }
 
     .card-sobre-politico .published {
         color: #666666;
         text-decoration: none;
-        
     }
+
+.table-administrativo table {
+}
+
+.table-administrativo tr {
+}
+
+.table-administrativo td {
+    word-wrap: break-word;
+    max-width: 161px !important;
+}
+
+.pnl-descricao-trabalho h4, .pnl-descricao-trabalho p {
+    font-weight: bold;
+}
+
+.text-regular-orange {
+    color: #FEB319;
+    font-weight: bold;
+}
+
+    .text-regular-orange h1{
+        font-size: 42px;
+        font-weight: bold;
+    }
+
+    .text-regular-orange p {
+        text-decoration: none;
+        color: brown !important;
+    }
+
+    .text-regular-orange a {
+        text-decoration: none;
+        color: brown !important;
+    }
+
+        .text-regular-orange a:hover {
+            text-decoration: none;
+            color: #FEB319 !important;
+        }
+
+
+
+.table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+@media only screen and (max-width: 600px) {
+    /* Ajuste para telas menores */
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th, td {
+        border: none;
+        padding: 8px;
+        display: block;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    td {
+        border-bottom: 1px solid #ddd;
+    }
+
+
+    .table-administrativo td {
+        word-wrap: break-word;
+        max-width: 95vw !important;
+    }
+}

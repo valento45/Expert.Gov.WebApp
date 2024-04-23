@@ -29,11 +29,11 @@ namespace Expert.Gov.Core.Repositorys
             cmd.Parameters.AddWithValue(@"nome", solicitacao.Nome);
             cmd.Parameters.AddWithValue(@"celular", solicitacao.Celular);
             cmd.Parameters.AddWithValue(@"email", solicitacao.Email);
-            cmd.Parameters.AddWithValue(@"endereco_solicitacao", solicitacao.Endereco_solicitacao);
+            cmd.Parameters.AddWithValue(@"endereco_solicitacao", solicitacao.Endereco_solicitacao ?? "");
             cmd.Parameters.AddWithValue(@"numero_solicitacao",solicitacao.Numero_solicitacao);
-            cmd.Parameters.AddWithValue(@"cep_solicitacao", solicitacao.Cep_solicitacao);
-            cmd.Parameters.AddWithValue(@"descricao_titulo", solicitacao.Descricao_Titulo);
-            cmd.Parameters.AddWithValue(@"descricao_sugestao_melhoria", solicitacao.Descricao_Sugestao_Melhoria);
+            cmd.Parameters.AddWithValue(@"cep_solicitacao", solicitacao.Cep_solicitacao ?? "");
+            cmd.Parameters.AddWithValue(@"descricao_titulo", solicitacao.Descricao_Titulo ?? "");
+            cmd.Parameters.AddWithValue(@"descricao_sugestao_melhoria", solicitacao.Descricao_Sugestao_Melhoria ?? "");
 
             var result = await base.ExecuteScalarAsync(cmd);
 
@@ -51,9 +51,9 @@ namespace Expert.Gov.Core.Repositorys
           " values (@id_solicitacao, @anexo_base64, @extensao_arquivo)";
 
             NpgsqlCommand cmd = new NpgsqlCommand(query);
-            cmd.Parameters.AddWithValue(@"id_solicitacao", anexo.IdSolicitacao);
-            cmd.Parameters.AddWithValue(@"anexo_base64", anexo.AnexoBase64);
-            cmd.Parameters.AddWithValue(@"extensao_arquivo", anexo.ExtensaoArquivo);
+            cmd.Parameters.AddWithValue(@"id_solicitacao", anexo.Id_Solicitacao);
+            cmd.Parameters.AddWithValue(@"anexo_base64", anexo.Anexo_Base64);
+            cmd.Parameters.AddWithValue(@"extensao_arquivo", anexo.Extensao_Arquivo);
 
 
             var result = await base.ExecuteCommand(cmd);
@@ -103,10 +103,23 @@ namespace Expert.Gov.Core.Repositorys
 
             return result;
         }
-        public Task<IEnumerable<Solicitacao>> ConsultarSolicitacoes()
+
+        public async Task<Solicitacao> GetById(long id)
         {
-            throw new NotImplementedException();
+            string query = "select * from  solicitacao_tb where id_solicitacao = " + id;
+
+            var result = await QueryAsync<Solicitacao>(query);
+
+            return result.FirstOrDefault();
         }
 
+        public async Task<IEnumerable<AnexoSolicitacao>> ObterAnexos(long idSolicitacao)
+        {
+            string query = "select * from  anexo_solicitacao_tb where id_solicitacao = " + idSolicitacao;
+
+            var result = await QueryAsync<AnexoSolicitacao>(query);
+
+            return result;
+        }
     }
 }

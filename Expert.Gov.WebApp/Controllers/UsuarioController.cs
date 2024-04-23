@@ -18,6 +18,9 @@ namespace Expert.Gov.WebApp.Controllers
         [HttpGet]
         public async Task<IActionResult> CadastroUsuario()
         {
+            if (!User.IsAuthenticated())
+                return View("Unauthorized");
+
             return View();
         }
 

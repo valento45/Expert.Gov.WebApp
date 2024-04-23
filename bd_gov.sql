@@ -5,7 +5,7 @@ CREATE DATABASE bd_gov
     CONNECTION LIMIT = -1
     IS_TEMPLATE = False;
 	
-	select * from cadastro_usuario_tb
+
 	create table cadastro_usuario_tb
 	( 
 	id_cadastroUsuario serial not null primary key,

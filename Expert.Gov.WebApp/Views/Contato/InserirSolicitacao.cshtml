@@ -9,7 +9,7 @@
     <hr />
 
 
-    <form class="form-contato-sugestao mt-3 col-lg-6" asp-controller="Contato" asp-action="SalvarSolicitacao" method="post">
+    <form class="form-contato-sugestao mt-3 col-lg-6" asp-controller="Contato" asp-action="SalvarSolicitacao" method="post" enctype="multipart/form-data">
 
         <input asp-for="Id_Solicitacao" class="d-none" />
 
@@ -36,7 +36,7 @@
             <label class="form-label text-semi-bold-light ag-field-label" for="form2Example2">Descreva Seu Problema</label>
         </div>
 
-        <div class="mb-4">
+        <div class="mb-5">
             <a><span id="lblQtdAnexos">( 0 )</span>&nbsp; Anexos adicionados</a>
             <button type="button" class="btn btn-teal ms-3" onclick="onClickCarregarImagens(this)">Carregar anexos</button>
             <input id="btnCarregarImagens" onchange="onChangeImagens(this)" class="d-none" asp-for="Anexos" type="file" multiple>
@@ -68,7 +68,7 @@
 
 
         <div class="form-outline mb-4 ag-field-content col-lg-12 col-sm-12">
-            <textarea asp-for="Descricao_Sugestao_Melhoria" class="form-control ag-field-input ag-input-color-orange-full" autocomplete="off" required style="height: 200px;">
+            <textarea asp-for="Descricao_Sugestao_Melhoria" class="form-control ag-field-input ag-input-color-orange-full" autocomplete="off" style="height: 200px;">
 
             </textarea>
             <label class="form-label text-semi-bold-light ag-field-label" for="form2Example2">Decreve sua sugestão (Opcional)</label>

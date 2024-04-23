@@ -66,7 +66,7 @@ namespace Expert.Gov.WebApp.Applications.Interfaces
         {
             var listaTrabalhos = await _portfolioService.ObterTodosPortfolios(trabalhoRealizado);
 
-            foreach(var trabRealizado in listaTrabalhos)
+            foreach (var trabRealizado in listaTrabalhos)
             {
                 var anexos = await _portfolioService.ObterTodosAnexosByPortfolio(trabRealizado.Id_Portfolio);
 
@@ -89,9 +89,28 @@ namespace Expert.Gov.WebApp.Applications.Interfaces
 
             return await _portfolioService.ObterPorId(Id_Portfolio);
         }
-        public async Task<bool> AtualizarPortfolio(TrabalhoRealizado trabalhoRealizado)
+        public async Task<bool> AtualizarPortfolio(PortfolioViewModel portfolioViewModel)
         {
-            return await _portfolioService.AtualizarPortfolio(trabalhoRealizado);
+            TrabalhoRealizado trabalhoRealizado = new TrabalhoRealizado();
+
+            trabalhoRealizado.Id_Portfolio = portfolioViewModel.Id_Portfolio;
+            trabalhoRealizado.Descricao = portfolioViewModel.Descricao;
+            trabalhoRealizado.Data_Hora = portfolioViewModel.DataHora;
+            trabalhoRealizado.Resumo = portfolioViewModel.Resumo;
+            trabalhoRealizado.Endereco = portfolioViewModel.Local;
+
+            if (await _portfolioService.AtualizarPortfolio(trabalhoRealizado))
+            {
+
+                if (portfolioViewModel.Anexos?.Any() ?? false)
+                {
+                    await this.ExcluirAnexo(portfolioViewModel.Id_Portfolio);
+                    await this.IncluirAnexosPortfolio(portfolioViewModel.Anexos, portfolioViewModel.Id_Portfolio);
+                }
+
+                return true;
+            }
+            return false;
         }
 
         public async Task<IEnumerable<AnexoTrabalhoRealizado>> ObterTodosAnexosByPortfolio(long Id_Portfolio)

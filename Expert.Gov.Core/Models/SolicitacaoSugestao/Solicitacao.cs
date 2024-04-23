@@ -29,8 +29,20 @@ namespace Expert.Gov.Core.Models.SolicitacaoSugestao
 
         public string ObterEnderecoFormatado()
         {
-            return $"{Endereco_solicitacao}, {Numero_solicitacao} - {Cep_solicitacao}";
+            var sb = new StringBuilder();
+
+            sb.Append(Endereco_solicitacao);
+
+            if (!string.IsNullOrEmpty(Numero_solicitacao))
+                sb.Append($", {Numero_solicitacao}");
+
+            if (!string.IsNullOrEmpty(Cep_solicitacao))
+                sb.Append($" - {Cep_solicitacao}");
+
+            return sb.ToString();
         }
+
+
 
     }
 }

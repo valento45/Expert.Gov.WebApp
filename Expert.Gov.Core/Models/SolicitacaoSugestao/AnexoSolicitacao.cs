@@ -9,10 +9,10 @@ namespace Expert.Gov.Core.Models.SolicitacaoSugestao
 {
     public class AnexoSolicitacao
     {
-        public int IdAnexo { get; set; }
-        public long IdSolicitacao { get; set; }
-        public string AnexoBase64 { get; private set; }
-        public string ExtensaoArquivo { get; private set; }
+        public int Id_Anexo { get; set; }
+        public long Id_Solicitacao { get; set; }
+        public string Anexo_Base64 { get; private set; }
+        public string Extensao_Arquivo { get; private set; }
 
 
 
@@ -28,18 +28,18 @@ namespace Expert.Gov.Core.Models.SolicitacaoSugestao
 
         public AnexoSolicitacao(long idSolicitacao)
         {
-            IdSolicitacao = idSolicitacao;
+            Id_Solicitacao = idSolicitacao;
         }
 
 
         public void InformarAnexoBase64(string anexo)
         {
-            AnexoBase64 = anexo;
+            Anexo_Base64 = anexo;
         }
 
         public void InformarExtensao(string extensao)
         {
-            ExtensaoArquivo = extensao;
+            Extensao_Arquivo = extensao;
         }
     }
 }

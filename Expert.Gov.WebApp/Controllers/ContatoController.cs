@@ -24,16 +24,7 @@ namespace Expert.Gov.WebApp.Controllers
         {
             return View();
         }
-
-
-        [HttpPost]
-        public async Task<JsonResult> InserirSolicitacao(SolicitacaoViewModel solicitacao)
-        {
-
-            var result = await _solicitacaoApplication.InserirSolicitacao(solicitacao);
-
-            return Json(result);
-        }
+       
 
 
         [HttpPost]
@@ -62,7 +53,7 @@ namespace Expert.Gov.WebApp.Controllers
                 await _solicitacaoApplication.InserirSolicitacao(solicitacaoViewModel);
             }
 
-            MessageViewModel message = new MessageViewModel("Solicitação incluída com sucesso!", 
+            MessageViewModel message = new MessageViewModel("Solicitação incluída com sucesso!",
                 "Em breve entraremos em contato, obrigado.");
             return View("SucessoMessage", message);
         }
@@ -70,7 +61,8 @@ namespace Expert.Gov.WebApp.Controllers
         [HttpGet]
         public async Task<IActionResult> SolicitarMelhorias()
         {
-
+            if (!User.IsAuthenticated())
+                return View("Unauthorized");
 
             var solicitacaoLista_ = new SolicitacoesLista();
 
@@ -81,22 +73,37 @@ namespace Expert.Gov.WebApp.Controllers
             return View(solicitacaoLista_);
         }
 
+
+        [HttpGet]
         public async Task<IActionResult> ExcluirAnexo(long Id_Solicitacao)
         {
+            if (!User.IsAuthenticated())
+                return View("Unauthorized");
+
             var result = await _solicitacaoApplication.ExcluirAnexo(Id_Solicitacao);
 
             return RedirectToAction(nameof(SolicitarMelhorias));
         }
 
+        [HttpGet]
         public async Task<IActionResult> ExcluirSolicitacao(long id)
         {
+            if (!User.IsAuthenticated())
+                return View("Unauthorized");
+
             var result = await _solicitacaoApplication.ExcluirSolicitacao(id);
 
             return RedirectToAction(nameof(SolicitarMelhorias));
         }
 
 
+        [HttpGet]
+        public async Task<IActionResult> VerSolicitacao(long id)
+        {
 
+            var solicitacao = await _solicitacaoApplication.GetById(id);
+            return View(solicitacao);
+        }
 
     }
 }

@@ -16,6 +16,7 @@ namespace Expert.Gov.Core.Services.Interfaces
         Task<bool> ExcluirSolicitacao(long Id_Solicitacao);
 
         Task<bool> ExcluirAnexo(long Id_Solicitacao);
-        Task<IEnumerable<Solicitacao>> ConsultarSolicitacoes();
+        Task<Solicitacao> GetById(long id);
+        Task<IEnumerable<AnexoSolicitacao>> ObterAnexos(long idSolicitacao);
     }
 }

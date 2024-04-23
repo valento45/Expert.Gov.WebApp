@@ -17,31 +17,74 @@ namespace Expert.Gov.WebApp.Controllers
             _userManager = userManager;
         }
 
-        protected async Task<bool> Autenticar(LoginModel model)
+        protected async Task<Usuario?> Autenticar(LoginModel model)
         {
             var user = await _userManager.FindByNameAsync(model.UserName);
-            user.PasswordHash = Security.Encrypt(model.Password);
+
 
             if (user != null)
             {
-                if (await _userManager.CheckPasswordAsync(user, model.Password))
+                if (user.CheckPassword(Security.Encrypt(model.Password)))
                 {
                     var identity = new ClaimsIdentity("cookies");
 
-                    identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()));
+                    identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.Id_CadastroUsuario.ToString()));
                     identity.AddClaim(new Claim(ClaimTypes.Name, model.UserName));
-                    identity.AddClaim(new Claim(ClaimTypes.Hash, user.PasswordHash));
+                    identity.AddClaim(new Claim(ClaimTypes.Hash, user.Password));
                     identity.AddClaims(await _userManager.GetClaimsAsync(user));
 
                     var userClaim = new ClaimsPrincipal(identity);
                     await HttpContext.SignInAsync("cookies", userClaim);
 
-                    return true;
+                    return user;
                 }
             }
 
-            return false;
+            return null;
         }
 
+
+        protected async Task<bool> Deslogar()
+        {
+            if (User != null)
+            {
+                await HttpContext.SignOutAsync("cookies");
+            }
+
+            return true;
+        }
+
+
+        protected long GetIdUsuarioLogado()
+        {
+            var claimUser = HttpContext?.User.Claims.FirstOrDefault(p => p.Type == ClaimTypes.NameIdentifier);
+
+            if (claimUser != null)
+            {
+                return long.Parse(claimUser.Value.ToString());
+            }
+            else
+                return -1;
+        }
+
+
+
+        protected string GetUserNameLogado()
+        {
+            var claimUser = HttpContext.User.Claims.FirstOrDefault(p => p.Type == ClaimTypes.Name);
+
+            if (claimUser != null)
+            {
+                return claimUser.Value.ToString();
+            }
+            else
+                return "";
+        }
+
+
+        public bool IsAuthenticated()
+        {
+            return User?.Claims?.Any(p => p.Type == ClaimTypes.NameIdentifier) ?? false;
+        }
     }
 }

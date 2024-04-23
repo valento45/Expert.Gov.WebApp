@@ -42,5 +42,11 @@ namespace Expert.Gov.Core.Authorization
             return $"{Endereco}, {Numero}, {Cidade} - {Cep} ";
         }
 
+
+        public bool CheckPassword(string passwordHash)
+        {
+            return Password.Equals(passwordHash);
+        }
+
     }
 }

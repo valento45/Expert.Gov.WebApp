@@ -1,33 +1,36 @@
-﻿@using Expert.Gov.Core.Models.SolicitacaoSugestao
+﻿@using Expert.Gov.Core.Authorization;
+@using Expert.Gov.Core.Models.SolicitacaoSugestao
 @model SolicitacoesLista
 
+@{
+    if (User.IsAuthenticated())
+    {
+        Layout = "_LayoutAdministrativo";
+    }
+}
 
 
 <div class="container container-ghost mt-5">
 
     <div class="col-lg-12 d-inline-flex">
-        <h4 class="col-lg-10">Solicitar Melhoria</h4>
-
-
-        <a type="button" class="btn btn-teal col-lg-2 ms-2" asp-controller="Contato" asp-action="InserirSolicitacao">Enviar Solicitacao</a>
+        <h4 class="col-lg-10">Solicitações da comunidade</h4>
     </div>
-
-    <hr />
-
+    <hr class=" mb-5" />
     <form>
 
-        <table class="table">
+        <table class="table table-administrativo">
             <thead class="table-dark">
                 <tr>
-                    <td>Id_Solicitacao</td>
+                    <td>Código</td>
                     <td>Nome</td>
                     <td>Celular</td>
                     <td>Email</td>
-                    <td>Endereco_solicitacao</td>
-                    <td>Numero_solicitacao </td>
-                    <td>Cep_solicitacao</td>
-                    <td>Descricao_prolema</td>
-                    <td>Descricao_Sugestao_Melhoria</td>
+                    <td>Endereço</td>
+                    <td>Nº </td>
+                    <td>CEP</td>
+                    <td>Descrição</td>
+                    <td>Sugestão</td>
+                    <td>Ação</td>
                 </tr>
             </thead>
 
@@ -45,8 +48,10 @@
                         <td> @solicitacao.Descricao_Titulo</td>
                         <td> @solicitacao.Descricao_Sugestao_Melhoria</td>
                         <td>
-                            @*  <a asp-action="Edit" asp-route-Id="@trabalhoRealizado.Id_Portfolio" >Edita</a> *@
-                            <button class="btn btn-danger" asp-controller="Contato" asp-action="ExcluirSolicitacao" asp-route-id="@solicitacao.Id_Solicitacao">Excluir</button>
+                            <div class="d-flex flex-wrap">
+                                <button class="btn btn-dark ms-1 mb-1" asp-controller="Contato" asp-action="VerSolicitacao" asp-route-id="@solicitacao.Id_Solicitacao">Ver solicitação</button>
+                                <button class="btn btn-danger ms-1 mb-1" asp-controller="Contato" asp-action="ExcluirSolicitacao" asp-route-id="@solicitacao.Id_Solicitacao">Excluir</button>
+                            </div>
                         </td>
                     </tr>
                 }
@@ -54,5 +59,7 @@
         </table>
 
     </form>
-
 </div>
+
+
+

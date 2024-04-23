@@ -11,7 +11,7 @@ namespace Expert.Gov.WebApp.Applications.Interfaces
         Task<bool> ExcluirAnexo(long Id_Portfolio);
         Task<bool> ExcluirTrabalho(long Id_Portfolio);
         Task <TrabalhoRealizado> ObterPorId(long Id_Portfolio);
-        Task<bool> AtualizarPortfolio(TrabalhoRealizado trabalhoRealizado);
+        Task<bool> AtualizarPortfolio(PortfolioViewModel trabalhoRealizado);
         Task<IEnumerable<AnexoTrabalhoRealizado>> ObterTodosAnexosByPortfolio(long Id_Portfolio);
     }
 }

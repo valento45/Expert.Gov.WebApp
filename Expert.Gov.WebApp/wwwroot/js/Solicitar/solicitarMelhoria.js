@@ -48,7 +48,7 @@ function onClickSalvar(e) {
     }
 
 
-    util.ajax.post("../Solicitacao/SalvarSolicitacao", model,
+    util.ajax.post("../Contato/SalvarSolicitacao", model,
         (data) => {
             console.log(data);
         },

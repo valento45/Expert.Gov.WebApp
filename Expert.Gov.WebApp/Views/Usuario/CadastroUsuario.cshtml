@@ -1,5 +1,12 @@
-﻿@model UsuarioViewModel
+﻿@using Expert.Gov.Core.Authorization;
+@model UsuarioViewModel
 
+@{
+    if (User.IsAuthenticated())
+    {
+        Layout = "_LayoutAdministrativo";
+    }
+}
 
 <div class="container mt-5 container-ghost">
     <h4>
@@ -28,7 +35,7 @@
             <label class="form-label text-semi-bold-light ag-field-label" for="form2Example2">Senha</label>
         </div>
 
-        <div class="mb-4">
+        <div class="mb-4 d-none">
             <a>( 0 ) Anexos adicionados</a>
             <button type="submit" class="btn btn-teal ms-3">Carregar Foto de Perfil</button>
         </div>

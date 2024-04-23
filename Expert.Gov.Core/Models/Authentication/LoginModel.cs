@@ -12,6 +12,8 @@ namespace Expert.Gov.Core.Models.Authentication
         public string Password { get; set; }
         public string PasswordHash { get; set; }
 
+        public string ErrorMessage { get; set; }
+
 
         public bool PreenchidoCorretamente()
         {

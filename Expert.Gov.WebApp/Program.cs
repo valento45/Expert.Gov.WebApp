@@ -2,6 +2,7 @@ using Expert.Gov.Core.Authorization;
 using Expert.Gov.WebApp.Authorization;
 using Expert.Gov.WebApp.Configuration.InjectDependences;
 using Microsoft.AspNetCore.Identity;
+using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,7 +15,17 @@ builder.Services.AddApplications();
 builder.Services.AddDataBaseConfiguration(builder.Configuration);
 
 
+//Configurando session
+builder.Services.AddDistributedMemoryCache();
 
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromSeconds(10);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddIdentityCore<Usuario>(options => { });
 builder.Services.AddScoped<IUserStore<Usuario>, UsuarioStore>();
 
@@ -33,16 +44,35 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+///Configure Globalization Culture
+var cultures = new[] {
+    new CultureInfo("pt-BR"),
+    new CultureInfo("en-US")
+};
 
-app.UseHttpsRedirection();
+
+app.UseRequestLocalization(new RequestLocalizationOptions
+{
+    DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture("pt-BR"),
+    SupportedCultures = cultures
+});
+
+//app.UseHttpsRedirection();
+app.UseForwardedHeaders();
+app.UseDefaultFiles();
 app.UseStaticFiles();
 
-app.UseRouting();
+//Adiciona uso de session
+app.UseSession();
 
+app.UseRouting();
 app.UseAuthorization();
+
+//app.MapHub<NotificationHub>("/notificationHub");
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
 
 app.Run();

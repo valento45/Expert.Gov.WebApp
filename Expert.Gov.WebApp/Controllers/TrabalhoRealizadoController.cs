@@ -32,6 +32,20 @@ namespace Expert.Gov.WebApp.Controllers
             return View(trabalhoRealizadoLista_);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> TrabalhosRealizadosAdmin()
+        {
+            if (!User.IsAuthenticated())
+                return View("Unauthorized");
+
+            var trabalhoRealizadoLista_ = new TrabalhosRealizadosLista();
+
+            trabalhoRealizadoLista_.ListaTrabalhosRealizados = await _portfolioApplication.ObterTodosPortfolios(new TrabalhoRealizado());
+
+
+            return View(trabalhoRealizadoLista_);
+        }
+
 
 
         [HttpGet]
@@ -47,15 +61,9 @@ namespace Expert.Gov.WebApp.Controllers
 
             if (portfolioViewModel.Id_Portfolio > 0)
             {
-                TrabalhoRealizado trabalhoRealizado = new TrabalhoRealizado();
 
-                trabalhoRealizado.Id_Portfolio = portfolioViewModel.Id_Portfolio;
-                trabalhoRealizado.Descricao = portfolioViewModel.Descricao;
-                trabalhoRealizado.Data_Hora = portfolioViewModel.DataHora;
-                trabalhoRealizado.Resumo = portfolioViewModel.Resumo;
-                trabalhoRealizado.Endereco = portfolioViewModel.Local;
 
-                await _portfolioApplication.AtualizarPortfolio(trabalhoRealizado);
+                await _portfolioApplication.AtualizarPortfolio(portfolioViewModel);
             }
             else
             {
@@ -84,7 +92,7 @@ namespace Expert.Gov.WebApp.Controllers
 
         }
 
-
+        [HttpGet]
         public async Task<IActionResult> EditarTrabalho(long id)
         {
             var result = await _portfolioApplication.ObterPorId(id);

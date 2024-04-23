@@ -1,16 +1,16 @@
-﻿@using Expert.Gov.Core.Models.TrabalhosRealizados;
-@model TrabalhoRealizado
+﻿@using Expert.Gov.Core.Models.SolicitacaoSugestao;
+@model Solicitacao
 
 
 @{
-    Layout = "_Layout";
+    Layout = "_LayoutAdministrativo";
     ViewData["Title"] = "Trabalho realizado";
 }
 
 <div class="mt-5 mb-5 container container-ghost">
 
     <div class="col-lg-12 d-inline-flex">
-        <h4 class="col-lg-10">@Model.Descricao</h4>
+        <h4 class="col-lg-10">Detalhes da solicitação</h4>
     </div>
     <hr />
 
@@ -46,16 +46,26 @@
 
         <div class="col-lg-6 container-ghost pnl-descricao-trabalho">
 
-            <h4 class="mb-5 mt-2">@Model.Descricao</h4>
+            <h4 class="mb-5 mt-2">@Model.Descricao_Titulo</h4>
 
-            <p><b>Resumo da atividade</b></p>
-            <p style="word-wrap: break-word;">@Model.Resumo</p>
+            @if (!string.IsNullOrEmpty(Model.Descricao_Sugestao_Melhoria))
+            {
+                <p><b>Solicitação</b></p>
+                <p style="word-wrap: break-word;">@Model.Descricao_Sugestao_Melhoria</p>
+            }
 
             <p><b>Endereço</b></p>
-            <p>@Model.Endereco</p>
+            <p> @Model.ObterEnderecoFormatado()</p>
 
-            <p><b>Data realização</b></p>
-            <p>@Model.Data_Hora.ToString("dd/MM/yyyy")</p>
+
+            <div class="mt-5 container-ghost">
+
+                <h4>Dados pessoais</h4>
+                <hr />
+                <p><b>Nome:</b> @Model.Nome</p>
+                <p><b>E-mail:</b> @Model.Email</p>
+            </div>
+
         </div>
 
     </div>

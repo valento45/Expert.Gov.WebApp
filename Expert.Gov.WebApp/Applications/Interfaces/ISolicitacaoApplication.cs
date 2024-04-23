@@ -13,7 +13,7 @@ namespace Expert.Gov.WebApp.Applications.Interfaces
         Task<IEnumerable<Solicitacao>> ObterTodasSolicitacaoes(Solicitacao solicitacao);
         Task<bool> ExcluirAnexo(long Id_solicitacao);
         Task<bool> ExcluirSolicitacao(long Id_solicitacao);
-        Task<IEnumerable<Solicitacao>> ConsultarSolicitacoes();
+        Task<Solicitacao?> GetById(long id);
 
     }
 }

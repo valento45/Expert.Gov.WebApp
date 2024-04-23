@@ -47,11 +47,15 @@ namespace Expert.Gov.Core.Services
         {
             return await _solicitacaoRepository.ExcluirSolicitacao(Id_Solicitacao);
         }
-       
-        public async Task<IEnumerable<Solicitacao>> ConsultarSolicitacoes()
+
+        public async Task<Solicitacao> GetById(long id)
         {
-            return await _solicitacaoRepository.ConsultarSolicitacoes();
+            return await _solicitacaoRepository.GetById(id);
         }
-       
+
+        public async Task<IEnumerable<AnexoSolicitacao>> ObterAnexos(long idSolicitacao)
+        {
+            return await _solicitacaoRepository.ObterAnexos(idSolicitacao);
+        }
     }
 }
