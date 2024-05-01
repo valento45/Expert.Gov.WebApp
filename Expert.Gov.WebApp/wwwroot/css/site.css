@@ -126,7 +126,7 @@ body {
 
 .topo-home {
     width: 100%;
-    height: 100vh;
+    height: 60vh;
 }
 
     .topo-home img {
@@ -634,3 +634,27 @@ th, td {
         max-width: 95vw !important;
     }
 }
+.message-warning {
+    height: 100px;
+    width: 100%;
+    background-color: beige;
+    text-align-last: center;
+    padding: 10px;
+    text-align: center;
+}
+.text-semi-bold-orange {
+    font-weight: bold;
+    font-family: Poppins-SemiBold;
+    color: #800000;
+}
+
+/*MOBILE*/
+@media only screen and (max-width: 750px) {
+    .topo-home {
+        width: 100%;
+        height: 30vh;
+    }
+
+}
+
+
