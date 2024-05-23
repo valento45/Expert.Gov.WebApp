@@ -11,6 +11,10 @@ namespace Expert.Gov.Core.Models.TrabalhosRealizados
 
         public IEnumerable<TrabalhoRealizado> ListaTrabalhosRealizados { get; set; }
 
-        
+        public TrabalhosRealizadosLista()
+        {
+            ListaTrabalhosRealizados = new List<TrabalhoRealizado>();
+        }
+
     }
 }

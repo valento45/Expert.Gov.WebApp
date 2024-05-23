@@ -22,12 +22,9 @@ namespace Expert.Gov.WebApp.Controllers
         [HttpGet]
         public async Task<IActionResult> TrabalhosRealizados()
         {
-
-
             var trabalhoRealizadoLista_ = new TrabalhosRealizadosLista();
 
             trabalhoRealizadoLista_.ListaTrabalhosRealizados = await _portfolioApplication.ObterTodosPortfolios(new TrabalhoRealizado());
-
 
             return View(trabalhoRealizadoLista_);
         }
@@ -35,7 +32,7 @@ namespace Expert.Gov.WebApp.Controllers
         [HttpGet]
         public async Task<IActionResult> TrabalhosRealizadosAdmin()
         {
-            if (!User.IsAuthenticated())
+            if (!User?.IsAuthenticated() ?? true)
                 return View("Unauthorized");
 
             var trabalhoRealizadoLista_ = new TrabalhosRealizadosLista();

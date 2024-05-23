@@ -6,6 +6,7 @@ CREATE DATABASE bd_gov
     IS_TEMPLATE = False;
 	
 
+
 	create table cadastro_usuario_tb
 	( 
 	id_cadastroUsuario serial not null primary key,
@@ -20,6 +21,8 @@ CREATE DATABASE bd_gov
 	celular varchar (100)not null,
 	email varchar (100) not null
 	);
+	insert into cadastro_usuario_tb (nome, user_name, senha, celular, email) values ('admin', 'admin', 'admin!@#', 'admin', 'admin')
+
 	
 	
 CREATE  table solicitacao_tb(

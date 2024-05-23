@@ -1,6 +1,5 @@
 ﻿using Expert.Gov.Core.Models.CadrastoUsuario;
 using Expert.Gov.Core.Models.SolicitacaoSugestao;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
