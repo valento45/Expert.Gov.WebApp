@@ -21,9 +21,9 @@ CREATE DATABASE bd_gov
 	celular varchar (100)not null,
 	email varchar (100) not null
 	);
-	insert into cadastro_usuario_tb (nome, user_name, senha, celular, email) values ('admin', 'admin', 'sqUvgGFQLV9g2eDa+M864ZLUSm70z+tChEYB1Wmbsrw=', 'admin', 'admin')
+	insert into cadastro_usuario_tb (nome, user_name, senha, celular, email) values ('admin', 'admin', 'ZE3nwrQ+lV/HZr80Rx1YXA==', 'admin', 'admin');
 
-	
+	select * from cadastro_usuario_tb
 	
 CREATE  table solicitacao_tb(
 		id_solicitacao serial not null primary key,
