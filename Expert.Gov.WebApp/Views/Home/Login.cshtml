@@ -54,6 +54,14 @@
         </nav>
     </header>
 
+    @if (!string.IsNullOrEmpty(Model?.ErrorMessage))
+    {
+        <div class="center-text container pt-5">
+            <div class="message-warning">
+                <h4 class="text-semi-bold-orange mt-3">@Model.ErrorMessage</h4>
+        </div>
+    </div>
+    }
 
     <div class="d-sm-block">
         <div class=" container-fluid" style="padding-left: 10%; max-width: 900px; position: fixed;">

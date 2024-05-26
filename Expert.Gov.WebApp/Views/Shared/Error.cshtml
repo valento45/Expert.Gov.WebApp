@@ -3,8 +3,8 @@
     ViewData["Title"] = "Error";
 }
 
-<h1 class="text-danger">Error.</h1>
-<h2 class="text-danger">An error occurred while processing your request.</h2>
+
+
 
 @if (Model.ShowRequestId)
 {
@@ -15,10 +15,9 @@
 
 
 <div class="container container-ghost">
-    <h3>Não foi possível processar sua operação no momento!</h3>
 
-
-    <p> <strong>Mensagem: @Model.Message</strong></p>
+    <h2 class="text-danger">@Model.Message</h2>
+    
     <p>
         @Model.StackTrace
     </p>

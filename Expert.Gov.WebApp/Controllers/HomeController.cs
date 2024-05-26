@@ -3,6 +3,7 @@ using Expert.Gov.Core.Models.Authentication;
 using Expert.Gov.WebApp.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Diagnostics;
 
@@ -45,9 +46,9 @@ namespace Expert.Gov.WebApp.Controllers
         [HttpGet]
         public async Task<IActionResult> Login()
         {
-            if (User != null)            
+            if (User != null)
                 await base.Deslogar();
-            
+
             return View();
         }
 
@@ -55,13 +56,29 @@ namespace Expert.Gov.WebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Logar(LoginModel login)
         {
+
+            if (!login.PreenchidoCorretamente())
+            {
+                ErrorViewModel errorViewModel = new ErrorViewModel
+                {
+                    Message = "Os campos não foram preenchidos corretamente!",
+                    StackTrace = JsonConvert.SerializeObject(login)
+                };
+                return View("Error", errorViewModel);
+            }
+
+
             var result = await base.Autenticar(login);
             if (result != null)
             {
                 return View("Administrativo/PainelAdministrador", result);
             }
+            else
+            {
+                login.ErrorMessage = "Usuário inválido, verifique o preenchimento dos campos.";
 
-            return View(login);
+                return View("Login", login);
+            }
         }
     }
 }
