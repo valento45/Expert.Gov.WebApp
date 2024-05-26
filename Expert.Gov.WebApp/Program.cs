@@ -1,5 +1,6 @@
 using Expert.Gov.Core.Authorization;
 using Expert.Gov.WebApp.Authorization;
+using Expert.Gov.WebApp.Configuration.Exceptions;
 using Expert.Gov.WebApp.Configuration.InjectDependences;
 using Microsoft.AspNetCore.Identity;
 using System.Globalization;
@@ -25,7 +26,7 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
-builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+//builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddIdentityCore<Usuario>(options => { });
 builder.Services.AddScoped<IUserStore<Usuario>, UsuarioStore>();
 
@@ -44,6 +45,12 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+else
+{
+    app.UseDeveloperExceptionPage();
+}
+
+
 ///Configure Globalization Culture
 var cultures = new[] {
     new CultureInfo("pt-BR"),
@@ -68,6 +75,7 @@ app.UseSession();
 app.UseRouting();
 app.UseAuthorization();
 
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 //app.MapHub<NotificationHub>("/notificationHub");
 
 app.MapControllerRoute(

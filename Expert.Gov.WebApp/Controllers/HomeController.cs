@@ -3,6 +3,7 @@ using Expert.Gov.Core.Models.Authentication;
 using Expert.Gov.WebApp.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Diagnostics;
 
 namespace Expert.Gov.WebApp.Controllers
@@ -27,9 +28,17 @@ namespace Expert.Gov.WebApp.Controllers
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        public IActionResult Error(Exception exception)
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            var result = new ErrorViewModel
+            {
+                Message = exception.Message,
+                StackTrace = exception?.StackTrace ?? string.Empty,
+                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
+            };
+
+
+            return View(result);
         }
 
 
