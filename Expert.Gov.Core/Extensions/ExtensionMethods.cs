@@ -16,13 +16,13 @@ namespace Expert.Gov.Core.Extensions
 
             if (length > 0 && length <= value.Length)
             {
-                end = value.Substring(0, length);
+                end = value.Substring(0, length) + "...";
             }
             else
             {
                 if (value.Length > 50)
                 {
-                    end = value.Substring(0, 50);
+                    end = value.Substring(0, 50) + "...";
                 }
 
                 else

@@ -2,9 +2,11 @@
     ViewData["Title"] = "Index ";
 }
 
-<div class="topo-home">
+@await Html.PartialAsync("Partials/_CarrouselPartial")
+
+@* <div class="topo-home">
     <img src="~/imgs/LEO 2024.png" />
-</div>
+</div> *@
 
 
 
@@ -102,3 +104,8 @@
     </div>
 
 </div>
+
+
+@section Scripts{
+    <script type="text/javascript" src="~/js/Components/carousel.js"></script>
+}

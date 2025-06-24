@@ -1,0 +1,323 @@
+﻿
+@font-face {
+    font-family: Poppins-Bold;
+    src: url('../Fonts/Poppins-Bold.ttf');
+}
+
+@font-face {
+    font-family: Poppins-Light;
+    src: url('../Fonts/Poppins-Light.ttf');
+}
+
+@font-face {
+    font-family: Poppins-SemiBold;
+    src: url('../Fonts/Poppins-SemiBold.ttf');
+}
+
+.dark-theme html, .dark-theme body {
+    background-color: #18191A;
+}
+
+.dark-theme header, .dark-theme nav {
+    background-color: #242526 !important;
+    color: #ffc107;
+}
+
+    .dark-theme nav a {
+        color: #DFE1E6 !important;
+    }
+
+        .dark-theme nav a:hover {
+            color: #ffc107 !important;
+            transform: scale(1.04);
+            transition: 1s;
+        }
+
+.dark-theme .nav-text-grand {
+    font-size: 20px;
+    font-style: normal;
+    text-decoration: none;
+    color: #ffc107 !important;
+}
+
+
+.img-icon-nav {
+    width: 30px;
+    height: 30px;
+}
+
+.dark-theme p, span {
+    color: #DFE1E6;
+    font-family: Poppins-Light;
+}
+
+
+.dark-theme h1, h2 {
+    color: #ffc107;
+    font-family: Poppins-Light;
+}
+
+.dark-theme h3, h4, h5 {
+    color: white;
+    font-family: Poppins-Light;
+}
+
+.nav-options {
+    background-color: #242526;
+}
+
+    .nav-options a {
+        color: #DFE1E6 !important;
+        font-family: Poppins-Light;
+    }
+
+        .nav-options a:hover {
+            color: #ffc107 !important;
+            transition: all 0.8s;
+            transform: scale(1.05)
+        }
+
+.dark-theme .ag-field-input {
+    color: ghostwhite;
+    font-family: Poppins-Light;
+    font-size: 1.0rem;
+    letter-spacing: .5px;
+    line-height: 2rem;
+    border: 0;
+    outline: 0;
+    border-bottom: 1px solid;
+    padding-bottom: .5rem;
+    width: 100%;
+    border-radius: 0px;
+    background: transparent;
+}
+
+    .dark-theme .ag-field-input:disabled ~ .ag-field-label {
+        font-family: Poppins;
+        font-size: 1.0rem;
+        letter-spacing: .1rem;
+        line-height: calc(18px + 2 * ((100vw - 320px) / 447));
+        transform: translate3d(0,-120%,0);
+    }
+
+    .dark-theme .ag-field-input:focus {
+        background-color: #EEEEEE;
+        color: #6B728E;
+        box-shadow: none;
+    }
+
+.dark-theme .ag-field {
+    position: relative
+}
+
+.dark-theme .ag-input-color-cinze-full {
+    background-color: #302F32;
+    color: ghostwhite;
+}
+
+.dark-theme .ag-field-label {
+    font-family: Poppins-Light !important;
+    font-size: 1.0rem;
+    letter-spacing: .5px;
+    line-height: 3rem;
+    position: absolute;
+    left: 0;
+    top: 0;
+    pointer-events: none;
+    transition: all .3s ease;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-left: 10px;
+    color: #ffc107 !important;
+}
+
+.dark-theme .ag-field-input:focus {
+    background-color: #302F32 !important;
+    color: white !important;
+    border-color: #ffc107;
+}
+
+    .dark-theme .ag-field-input:focus ~ .ag-field-label {
+        font-family: Poppins;
+        font-size: 1.1rem;
+        letter-spacing: .1rem;
+        line-height: calc(18px + 2 * ((100vw - 320px) / 447));
+        transform: translate3d(0,-120%,0);
+    }
+
+.dark-theme .ag-field-input:valid ~ .ag-field-label {
+    font-family: Poppins;
+    font-size: 1.1rem;
+    letter-spacing: .1rem;
+    line-height: calc(18px + 2 * ((100vw - 320px) / 447));
+    transform: translate3d(0,-120%,0)
+}
+
+.dark-theme .ag-field-content {
+    position: relative;
+    margin-top: 2.2rem;
+    padding-bottom: 7px;
+}
+
+
+.dark-theme .pnl-visao-valores {
+}
+
+    .dark-theme .pnl-visao-valores h1, h2 {
+        font-size: 42px;
+        line-height: 46px;
+        font-weight: bold;
+    }
+
+.dark-theme .pnl-txt-valores p {
+    line-height: 25px;
+    font-size: 17px;
+}
+
+.dark-theme .container-ghost {
+    background-color: #18191A;
+    color: #ffc107;
+}
+
+    .dark-theme .container-ghost a, .container-ghost p, .container-ghost span, .container-ghost label {
+        color: #DFE1E6;
+    }
+
+    .dark-theme .container-ghost h1, .container-ghost h2, .container-ghost h3, .container-ghost h4 {
+        color: #ffc107;
+    }
+
+    .dark-theme .container-ghost small {
+        color: gray;
+    }
+
+    .dark-theme .container-ghost p b {
+        color: #ffc107 !important;
+    }
+
+
+.dark-theme small {
+    color: #DFE1E6;
+}
+
+.dark-theme p b {
+    color: #ffc107 !important;
+}
+
+.dark-theme .card-portfolio {
+    width: 350px;
+    height: 380px;
+    padding: 2rem;
+}
+
+    .dark-theme .card-portfolio:hover {
+        background-color: #00808055 !important;
+        cursor: pointer;
+        transition: 0.5s;
+        transform: scale(1.05);
+    }
+
+
+
+    .dark-theme .card-portfolio small {
+        word-wrap: break-word;
+        width: 300px;
+    }
+
+.dark-theme .btn-teal {
+    background-color: #18191A;
+    color: #ffc107 !important;
+    border: 1px solid #ffc107;
+    border-radius: 50px;
+    min-width: 130px;
+}
+
+    .dark-theme .btn-teal:hover {
+        transform: scale(1.1);
+        transition: all 0.5s;
+        background-color: #ffc107;
+        color: #18191A !important;
+    }
+
+
+.dark-theme .btn-voltar {
+    background-color: transparent;
+    color: #ffc107;
+    border-radius: 50px;
+    min-width: 130px;
+}
+
+    .dark-theme .btn-voltar:hover {
+        transform: scale(1.1);
+        transition: all 0.5s;
+        border-bottom: 1px solid #ffc107;
+    }
+
+.link-redirect-orange {
+    text-decoration: none !important;
+}
+
+.dark-theme .link-redirect-orange:hover {
+    color: #ffc107 !important;
+    font-weight: bold;
+}
+
+
+.acesse-conta {
+    margin-top: 10vw !important;
+}
+
+
+
+.dark-theme .nav-administrativo {
+    background-color: #242526 !important;
+}
+
+    .dark-theme .nav-administrativo a {
+        font-weight: bold;
+        color: #DFE1E6 !important;
+        font-family: Poppins-Light;
+    }
+
+        .dark-theme .nav-administrativo a:hover {
+            transform: scale(1.05);
+            transition: all 0.5s;
+            color: #ffc107 !important;
+        }
+
+
+
+
+.dark-theme .container-administrativo {
+}
+
+    .dark-theme .container-administrativo h1, .dark-theme .container-administrativo h2, .dark-theme .container-administrativo h3, .dark-theme .container-administrativo h4 {
+        color: #ffc107;
+        font-weight: bold;
+        font-family: Poppins-Light;
+    }
+
+.dark-theme .card-sobre-politico{
+
+}
+
+    .dark-theme .card-sobre-politico strong {
+        color: #ffc107;
+    }
+
+.dark-theme .table-administrativo table {
+}
+
+.dark-theme .table-administrativo tr {
+}
+
+.dark-theme .table-administrativo td {
+    word-wrap: break-word;
+    max-width: 161px !important;
+}
+
+.table-dark-head {
+    color: #ffc107;
+}

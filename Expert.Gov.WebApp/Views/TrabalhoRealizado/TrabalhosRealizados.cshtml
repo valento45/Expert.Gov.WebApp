@@ -13,23 +13,19 @@
     <div class="col-lg-12 d-inline-flex">
         <h4 class="col-lg-10">Trabalhos realizados</h4>
 
-
         @if (User?.IsAuthenticated() ?? false)
         {
             <a type="button" class="btn btn-teal col-lg-2 ms-2" asp-controller="TrabalhoRealizado" asp-action="IncluirTrabalho">Incluir atividade</a>
         }
     </div>
     <hr />
-
 </div>
-
-
 
 
 <div class="container mb-5">
 
 
-    @if(Model?.ListaTrabalhosRealizados?.Any() ?? false)
+    @if (Model?.ListaTrabalhosRealizados?.Any() ?? false)
     {
         <!--Trabalhos realizados Normal-->
         <form class="mt-5 pb-5 d-flex justify-content-center">
@@ -49,11 +45,11 @@
                             <img src="~/imgs/fundo 1.jpg" style="width: 100%; height: 65%;" />
                         }
 
-                        <p class="mt-1" style="overflow-wrap: break-word;"><b>@trabRealizado.Descricao.ObterTextoSimplificado(80)</b></p>
+                        <p class="mt-1" style="overflow-wrap: break-word;"><b>@trabRealizado.Descricao.ObterTextoSimplificado(70)</b></p>
 
                         <div style="display: grid;">
-                            <small>@trabRealizado.Resumo.ObterTextoSimplificado() <b>...Ver mais</b></small>
-                            <small style="overflow-wrap: break-word;">@trabRealizado.Endereco</small>
+                            <p>   <small>@trabRealizado.Resumo.ObterTextoSimplificado() <b>...Ver mais</b></small></p>
+                            @* <p> <small style="overflow-wrap: break-word;">@trabRealizado.Endereco</small></p> *@
                         </div>
                     </div>
                 }

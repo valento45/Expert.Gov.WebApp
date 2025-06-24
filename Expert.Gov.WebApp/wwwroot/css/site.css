@@ -560,6 +560,8 @@ body {
     max-width: 161px !important;
 }
 
+
+
 .pnl-descricao-trabalho h4, .pnl-descricao-trabalho p {
     font-weight: bold;
 }
@@ -655,6 +657,13 @@ th, td {
         height: 30vh;
     }
 
+    .my-carousel img {
+        height: 45vh;
+        width: 100%;
+        opacity: 0.3;
+    }
+
 }
+
 
 

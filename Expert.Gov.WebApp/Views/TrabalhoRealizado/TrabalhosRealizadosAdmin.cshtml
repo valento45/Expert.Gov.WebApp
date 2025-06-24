@@ -28,7 +28,7 @@
 
     <form>
         <table class="table table-administrativo table-container">
-            <thead class="table-dark">
+            <thead class="table-dark-head">
                 <tr>
                     <td>Código</td>
                     <td>Descricao</td>
@@ -39,7 +39,7 @@
                 </tr>
             </thead>
 
-            <tbody>
+            <tbody class="table-dark">
                 @foreach (var trabalhoRealizado in Model.ListaTrabalhosRealizados)
                 {
                     <tr>

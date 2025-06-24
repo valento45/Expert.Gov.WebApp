@@ -19,7 +19,7 @@
     <form>
 
         <table class="table table-administrativo">
-            <thead class="table-dark">
+            <thead class="table-dark-head">
                 <tr>
                     <td>Código</td>
                     <td>Nome</td>
@@ -34,7 +34,7 @@
                 </tr>
             </thead>
 
-            <tbody>
+            <tbody class="table-dark">
                 @foreach (var solicitacao in Model.ListaSolicitacoes)
                 {
                     <tr>

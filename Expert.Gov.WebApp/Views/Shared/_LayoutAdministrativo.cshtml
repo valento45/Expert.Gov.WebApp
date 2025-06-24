@@ -1,6 +1,6 @@
 ﻿@using Expert.Gov.Core.Authorization;
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" class="dark-theme" style="background-color: #18191A ;">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,10 +9,11 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Expert.Gov.WebApp.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/portfolios.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/darkTheme.css" asp-append-version="true" />
 </head>
-<body>
+<body class="dark-theme">
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white box-shadow nav-administrativo">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-white box-shadow nav-administrativo">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Administrativo" asp-action="PainelAdministrador">Administrativo</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -74,9 +75,9 @@
         <div class=" col-sm-12 d-sm-inline-flex ">
 
             <div class="container col-sm-8 p-3 mt-2 ps-5" style="display: flex;    flex-wrap: wrap; ">
-                &copy; 2024 &nbsp; Leo Pontes - &nbsp; <a asp-area="" asp-controller="Home" asp-action="Privacy" class="link-redirect-orange" style="color: #008080 ; text-decoration: none;">Políticas de privacidade</a>
+                &copy; 2024 &nbsp; Leo Pontes - &nbsp; <a asp-area="" asp-controller="Home" asp-action="Privacy" class="link-redirect-orange" style="color: #ffc107 ; text-decoration: none;">Políticas de privacidade</a>
                 &nbsp; Desenvolvido por - <a href="https://www.instagram.com/ihc_digitalsolutions/" target="_blank"
-                                             class="link-redirect-orange ps-3" style="color: #008080 ; text-decoration: none;">IHC Digital Solutions</a>
+                                             class="link-redirect-orange ps-3" style="color: #ffc107 ; text-decoration: none;">IHC Digital Solutions</a>
             </div>
 
 
@@ -84,7 +85,7 @@
             <div class="container d-inline-flex col-sm-4 d-sm-flex footer-contatos justify-content-center  p-3 mb-1 mt-2">
                 <div class="col-sm-1 ">
                     <a href="https://wa.me/5511999957297" target="_blank">
-                        <img src="~/imgs/wpp-icon-png.png" />
+                        <img src="~/imgs/whatsapp-svgrepo-com.svg" />
                     </a>
                 </div>
 
@@ -105,6 +106,7 @@
 
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/jquery.mask/jquery.mask.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/js/UtilAjax.js" asp-append-version="true"></script>

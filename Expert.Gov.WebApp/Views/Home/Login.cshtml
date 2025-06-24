@@ -6,7 +6,7 @@
 }
 
 <!DOCTYPE html>
-<html lang="pt-br" class="fundo-login">
+<html lang="pt-br" class="fundo-login dark-theme" style="background-color: #18191A ;">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -15,37 +15,11 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/image-css.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Ihc.CrackSports.styles.css" asp-append-version="true" />
-
-    <style>
-        .fundo-login {
-            background-color: #FEB319;
-            color: ghostwhite !important;
-        }
-
-            .fundo-login a {
-                color: ghostwhite !important;
-            }
+    <link rel="stylesheet" href="~/css/darkTheme.css" asp-append-version="true" />
 
 
-
-        .top-form-login {
-            margin-top: 180px !important;
-        }
-
-        .link-redirection-simple {
-            text-decoration: none;
-        }
-
-        .btn-confirm-radius {
-            border-radius: 50px;
-            width: 120px;
-            background-color: ghostwhite;
-            color: #FEB319;
-        }
-
-    </style>
 </head>
-<body class="fundo-login">
+<body class="fundo-login container-ghost">
     <header class="">
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light box-shadow mb-3">
             <div class="container-fluid">
@@ -63,7 +37,7 @@
     </div>
     }
 
-    <div class="d-sm-block">
+    <div class="d-sm-block acesse-conta">
         <div class=" container-fluid" style="padding-left: 10%; max-width: 900px; position: fixed;">
             <h3 class="mt-5 text-semi-bold-light top-form-login">Acesse sua conta</h3>
             <form class="col-9 col-sm-4 col-lg-6 mt-5 " asp-controller="Home" asp-action="Logar" method="post">
@@ -99,12 +73,12 @@
                 </div>
 
                 <!-- Submit button -->
-                <button id="btnLogar" type="submit" class="btn  btn-block btn-confirm-radius mb-4">Acessar</button>
+                <button id="btnLogar" type="submit" class="btn-teal mb-4">Acessar</button>
 
 
                 <!-- Register buttons -->
                 <div class="text-center">
-                    <p>Não tem uma conta ? <a href="#!" id="lblCriarConta" class="link-redirect-orange link-redirection-simple" onclick="redirectCadastro()"> <b>Crie agora</b></a></p>
+                    <p>Não tem uma conta ? <a href="#" id="lblCriarConta" class="link-redirect-orange link-redirection-simple" onclick="redirectCadastro()"> <b>Crie agora</b></a></p>
                 </div>
             </form>
         </div>
